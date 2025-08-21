@@ -1,0 +1,28 @@
+.intro {
+    text-align: center;
+    font-family: 'bitcount grid single';
+}
+
+#project-title {
+    text-align: center;
+}
+
+.projects {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.project {
+    background-color: antiquewhite;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.project > li {
+    text-align: center;
+}
+
+img {
+    border-radius: 10px;
+}
