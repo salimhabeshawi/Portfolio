@@ -329,7 +329,8 @@
           window.matchMedia("(prefers-color-scheme: light)").matches
             ? "light"
             : "dark";
-        setTheme(saved || preferred || "dark");
+        // force default to dark when user has no saved preference
+        setTheme(saved || "dark");
         // render any feather icons present in the DOM
         if (window.feather) feather.replace();
         if (btn)

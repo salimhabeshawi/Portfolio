@@ -48,6 +48,7 @@ body {
 .intro {
   text-align: center;
   font-family: "bitcount grid single", monospace;
+  margin-top: 4rem; /* ensure intro isn't hidden under fixed topbar */
   margin-bottom: 3rem;
   padding: 2rem 0;
 }
@@ -270,6 +271,16 @@ img:hover {
 .topbar .social-icon svg {
   width: 22px;
   height: 22px;
+}
+
+/* Topbar icons: follow theme foreground color (dark in light theme, light in dark theme) */
+.topbar .social-icon {
+  color: var(--monokai-fg);
+}
+
+/* Ensure theme toggle icon follows theme color too */
+.topbar .theme-toggle {
+  color: var(--monokai-fg);
 }
 
 /* Make toggle visually match the blurred banner */
