@@ -13,6 +13,11 @@
   --monokai-blue: #78dce8;
 }
 
+/* Slightly smaller base font so the overall site reads a bit tighter */
+html {
+  font-size: 15px; /* browsers default to 16px; 15px is a subtle reduction */
+}
+
 /* Light mode overrides */
 [data-theme="light"] {
   /* Subtle, non-white light palette */
@@ -71,6 +76,7 @@ body {
 hr {
   border: none;
   height: 2px;
+  width: 60%;
   background: linear-gradient(
     90deg,
     var(--monokai-purple),
@@ -78,7 +84,7 @@ hr {
     var(--monokai-orange),
     var(--monokai-yellow)
   );
-  margin: 2rem 0;
+  margin: 2rem auto;
   border-radius: 2px;
 }
 
@@ -474,6 +480,11 @@ img:hover {
   .project,
   .section {
     padding: 1.5rem;
+  }
+
+  /* Reduce base font slightly on small screens for better fit */
+  html {
+    font-size: 14px;
   }
 }
 
