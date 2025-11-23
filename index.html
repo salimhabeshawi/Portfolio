@@ -1,115 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Salim Ahmed</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="social-icons header-socials">
+        <a
+          class="social-icon"
+          href="https://github.com/salimhabeshawi"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub (header)"
+        >
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path
+              d="M12 .5C5.73.5.96 5.27.96 11.54c0 4.86 3.16 8.98 7.55 10.43.55.1.75-.24.75-.53 0-.26-.01-1.13-.02-2.05-3.07.67-3.72-1.31-3.72-1.31-.5-1.27-1.22-1.61-1.22-1.61-.99-.68.07-.67.07-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.57 1.2 3.2.92.1-.72.38-1.2.69-1.47-2.45-.28-5.02-1.23-5.02-5.47 0-1.21.43-2.2 1.13-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.56 0c2.12-1.44 3.04-1.14 3.04-1.14.6 1.53.22 2.66.11 2.94.7.78 1.12 1.77 1.12 2.98 0 4.25-2.58 5.18-5.04 5.46.39.34.74 1.01.74 2.04 0 1.47-.02 2.65-.02 3.01 0 .29.2.64.76.53 4.38-1.45 7.54-5.57 7.54-10.43C23.04 5.27 18.27.5 12 .5z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-icon"
+          href="mailto:salimhabeshawi@gmail.com"
+          aria-label="Email (header)"
+        >
+          <!-- filled envelope (material style) -->
+          <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            aria-hidden="true"
+            fill="currentColor"
+          >
+            <path
+              d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-icon"
+          href="https://www.linkedin.com/in/USERNAME"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn (header)"
+        >
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path
+              d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0h4.7v2.2h.1c.65-1.2 2.25-2.5 4.63-2.5 4.95 0 5.86 3.25 5.86 7.5V24H18V16.5c0-1.78-.03-4.07-2.48-4.07-2.48 0-2.86 1.94-2.86 3.94V24H7.5V8z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-icon"
+          href="https://x.com/USERNAME"
+          target="_blank"
+          rel="noopener"
+          aria-label="X (header)"
+        >
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path
+              d="M17.53 2H21l-7.4 8.46L22.5 22h-7.03l-5.5-6.57L3.7 22H.2l7.9-9.02L-1 2h7.18l5.01 6.15L17.53 2zM16.3 20h1.95L6.77 4H4.76L16.3 20z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-icon"
+          href="https://t.me/USERNAME"
+          target="_blank"
+          rel="noopener"
+          aria-label="Telegram (header)"
+        >
+          <!-- paper-plane (filled) -->
+          <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            aria-hidden="true"
+            fill="currentColor"
+          >
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+          </svg>
+        </a>
+      </div>
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Toggle theme"
+        aria-pressed="false"
+      ></button>
+    </div>
     <div class="intro">
-        <h1>Hi, I'm Salim Ahmed,</h1>
-        <h2>a no-coffee, no-problem developer.</h2>
+      <h1>Hi, I'm Salim Ahmed,</h1>
+      <h2>a no-coffee, no-problem developer.</h2>
     </div>
 
     <hr />
 
     <h2 id="project-title">Projects</h2>
     <div class="projects">
-        <ol id="projects_list">
-            <div class="project1 project">
-                <li>
-                    <p><a href="https://github.com/salimhabeshawi/SHANZ-Expenses.git">SHANZ-Expenses:</a> a windowed expenses tracker app</p>
-                    <img src="./assets/images/shanz_expenses.png" alt="expenses tracker app" height="500">
-                </li>
-            </div>
-            <div class="project2 project">
-                <li>
-                    <p><a href="https://github.com/salimhabeshawi/Salculator-a-Python-GUI-Calculator.git">Salculator</a> a windowed calculator app</p>
-                    <img src="./assets/images/salculator.png" alt="calculator app" height="500">
-                </li>
-            </div>
-            <div class="project2 project">
-                <li>
-                    <p><a href="https://github.com/salimhabeshawi/SHANZ-Expenses.git">SHANZ-Expenses:</a> a windowed expenses tracker app</p>
-                    <img src="./assets/images/shanz_expenses.png" alt="expenses tracker app" height="500">
-                </li>
-            </div>
-        </ol>
+      <ol id="projects_list">
+        <li class="project project1">
+          <p>
+            <a href="https://github.com/salimhabeshawi/SHANZ-Expenses.git"
+              >SHANZ-Expenses:</a
+            >
+            a windowed expenses tracker app
+          </p>
+          <img
+            src="./assets/images/shanz_expenses.png"
+            alt="expenses tracker app"
+            height="500"
+          />
+        </li>
+        <li class="project project2">
+          <p>
+            <a
+              href="https://github.com/salimhabeshawi/Salculator-a-Python-GUI-Calculator.git"
+              >Salculator</a
+            >
+            a windowed calculator app
+          </p>
+          <img
+            src="./assets/images/salculator.png"
+            alt="calculator app"
+            height="500"
+          />
+        </li>
+        <li class="project project3">
+          <p>
+            <a href="https://github.com/salimhabeshawi/SHANZ-Expenses.git"
+              >SHANZ-Expenses:</a
+            >
+            a windowed expenses tracker app
+          </p>
+          <img
+            src="./assets/images/shanz_expenses.png"
+            alt="expenses tracker app"
+            height="500"
+          />
+        </li>
+      </ol>
     </div>
 
     <hr />
 
     <section id="about" class="section about">
-        <h2 class="section-title">About</h2>
-        <p>
-            I build small, focused tools with simple, fast UIs — lately desktop apps like an expenses tracker and a calculator.
-            No coffee required. I enjoy shipping things that reduce friction for everyday tasks and keep the tech stack
-            pragmatic.
-        </p>
+      <h2 class="section-title">About</h2>
+      <p>
+        I build small, focused tools with simple, fast UIs — lately desktop apps
+        like an expenses tracker and a calculator. No coffee required. I enjoy
+        shipping things that reduce friction for everyday tasks and keep the
+        tech stack pragmatic.
+      </p>
     </section>
 
     <hr />
 
     <section id="timeline" class="section timeline">
-        <h2 class="section-title">Timeline</h2>
-        <ol class="timeline-list">
-            <li class="timeline-item">
-                <time class="timeline-date">2025</time>
-                <div class="timeline-card">
-                    <h3>Released SHANZ-Expenses</h3>
-                    <p>A windowed expenses tracker app.</p>
-                </div>
-            </li>
-            <li class="timeline-item">
-                <time class="timeline-date">2024</time>
-                <div class="timeline-card">
-                    <h3>Built Salculator</h3>
-                    <p>A desktop calculator app.</p>
-                </div>
-            </li>
-            <li class="timeline-item">
-                <time class="timeline-date">2023</time>
-                <div class="timeline-card">
-                    <h3>Started this portfolio</h3>
-                    <p>Experimenting with UI, tooling, and desktop apps.</p>
-                </div>
-            </li>
-        </ol>
+      <h2 class="section-title">Timeline</h2>
+      <ol class="timeline-list">
+        <li class="timeline-item">
+          <time class="timeline-date">2025</time>
+          <div class="timeline-card">
+            <h3>Released SHANZ-Expenses</h3>
+            <p>A windowed expenses tracker app.</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <time class="timeline-date">2024</time>
+          <div class="timeline-card">
+            <h3>Built Salculator</h3>
+            <p>A desktop calculator app.</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <time class="timeline-date">2023</time>
+          <div class="timeline-card">
+            <h3>Started this portfolio</h3>
+            <p>Experimenting with UI, tooling, and desktop apps.</p>
+          </div>
+        </li>
+      </ol>
     </section>
 
     <hr />
 
     <section id="socials" class="section socials">
-        <h2 class="section-title">Connect</h2>
-        <div class="social-icons">
-            <a class="social-icon" href="https://github.com/salimhabeshawi" target="_blank" rel="noopener" aria-label="GitHub">
-                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M12 .5C5.73.5.96 5.27.96 11.54c0 4.86 3.16 8.98 7.55 10.43.55.1.75-.24.75-.53 0-.26-.01-1.13-.02-2.05-3.07.67-3.72-1.31-3.72-1.31-.5-1.27-1.22-1.61-1.22-1.61-.99-.68.07-.67.07-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.57 1.2 3.2.92.1-.72.38-1.2.69-1.47-2.45-.28-5.02-1.23-5.02-5.47 0-1.21.43-2.2 1.13-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.56 0c2.12-1.44 3.04-1.14 3.04-1.14.6 1.53.22 2.66.11 2.94.7.78 1.12 1.77 1.12 2.98 0 4.25-2.58 5.18-5.04 5.46.39.34.74 1.01.74 2.04 0 1.47-.02 2.65-.02 3.01 0 .29.2.64.76.53 4.38-1.45 7.54-5.57 7.54-10.43C23.04 5.27 18.27.5 12 .5z"/></svg>
-            </a>
-            <a class="social-icon" href="mailto:salimhabeshawi@gmail.com" aria-label="Email">
-                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M2 4h20v16H2V4zm2 2v12h16V6H4zm8 6L4 7.5V6l8 5 8-5v1.5L12 12z"/></svg>
-            </a>
-            <a class="social-icon" href="https://www.linkedin.com/in/USERNAME" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0h4.7v2.2h.1c.65-1.2 2.25-2.5 4.63-2.5 4.95 0 5.86 3.25 5.86 7.5V24H18V16.5c0-1.78-.03-4.07-2.48-4.07-2.48 0-2.86 1.94-2.86 3.94V24H7.5V8z"/></svg>
-            </a>
-            <a class="social-icon" href="https://x.com/USERNAME" target="_blank" rel="noopener" aria-label="X">
-                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M17.53 2H21l-7.4 8.46L22.5 22h-7.03l-5.5-6.57L3.7 22H.2l7.9-9.02L-1 2h7.18l5.01 6.15L17.53 2zM16.3 20h1.95L6.77 4H4.76L16.3 20z"/></svg>
-            </a>
-        </div>
+      <h2 class="section-title">Connect</h2>
+      <div class="social-icons">
+        <a
+          class="social-icon"
+          href="https://github.com/salimhabeshawi"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+        >
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <path
+              d="M12 .5C5.73.5.96 5.27.96 11.54c0 4.86 3.16 8.98 7.55 10.43.55.1.75-.24.75-.53 0-.26-.01-1.13-.02-2.05-3.07.67-3.72-1.31-3.72-1.31-.5-1.27-1.22-1.61-1.22-1.61-.99-.68.07-.67.07-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.57 1.2 3.2.92.1-.72.38-1.2.69-1.47-2.45-.28-5.02-1.23-5.02-5.47 0-1.21.43-2.2 1.13-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.56 0c2.12-1.44 3.04-1.14 3.04-1.14.6 1.53.22 2.66.11 2.94.7.78 1.12 1.77 1.12 2.98 0 4.25-2.58 5.18-5.04 5.46.39.34.74 1.01.74 2.04 0 1.47-.02 2.65-.02 3.01 0 .29.2.64.76.53 4.38-1.45 7.54-5.57 7.54-10.43C23.04 5.27 18.27.5 12 .5z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-icon"
+          href="mailto:salimhabeshawi@gmail.com"
+          aria-label="Email"
+        >
+          <!-- filled envelope (material style) -->
+          <svg
+            viewBox="0 0 24 24"
+            width="28"
+            height="28"
+            aria-hidden="true"
+            fill="currentColor"
+          >
+            <path
+              d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-icon"
+          href="https://www.linkedin.com/in/USERNAME"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <path
+              d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0h4.7v2.2h.1c.65-1.2 2.25-2.5 4.63-2.5 4.95 0 5.86 3.25 5.86 7.5V24H18V16.5c0-1.78-.03-4.07-2.48-4.07-2.48 0-2.86 1.94-2.86 3.94V24H7.5V8z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-icon"
+          href="https://x.com/USERNAME"
+          target="_blank"
+          rel="noopener"
+          aria-label="X"
+        >
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <path
+              d="M17.53 2H21l-7.4 8.46L22.5 22h-7.03l-5.5-6.57L3.7 22H.2l7.9-9.02L-1 2h7.18l5.01 6.15L17.53 2zM16.3 20h1.95L6.77 4H4.76L16.3 20z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-icon"
+          href="https://t.me/USERNAME"
+          target="_blank"
+          rel="noopener"
+          aria-label="Telegram"
+        >
+          <!-- paper-plane (filled) -->
+          <svg
+            viewBox="0 0 24 24"
+            width="28"
+            height="28"
+            aria-hidden="true"
+            fill="currentColor"
+          >
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+          </svg>
+        </a>
+      </div>
     </section>
 
     <footer class="footer">
-        <div class="footer-links">
-            <a href="#timeline">Timeline</a>
-            <a href="#about">About</a>
-            <a href="#socials">Socials</a>
-        </div>
-        <div class="footer-copyright">
-            &copy; 2025 Salim Ahmed. All rights reserved.
-        </div>
+      <div class="footer-links">
+        <a href="#timeline">Timeline</a>
+        <a href="#about">About</a>
+        <a href="#socials">Socials</a>
+      </div>
+      <div class="footer-copyright">
+        &copy; 2025 Salim Ahmed. All rights reserved.
+      </div>
     </footer>
-</body>
+
+    <!-- Feather Icons CDN (open-source) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const btn = document.getElementById("themeToggle");
+        const sun = '<i data-feather="sun"></i>';
+        const moon = '<i data-feather="moon"></i>';
+        function setTheme(t) {
+          root.setAttribute("data-theme", t);
+          try {
+            localStorage.setItem("theme", t);
+          } catch (e) {}
+          if (btn) {
+            // Show the action icon: when in light, show moon (to go dark); when in dark, show sun
+            btn.innerHTML = t === "light" ? moon : sun;
+            btn.setAttribute(
+              "aria-label",
+              t === "light" ? "Switch to dark mode" : "Switch to light mode"
+            );
+            btn.setAttribute("aria-pressed", t === "light");
+            // render feather icons inside the button
+            if (window.feather) feather.replace();
+          }
+        }
+        const saved = (function () {
+          try {
+            return localStorage.getItem("theme");
+          } catch (e) {
+            return null;
+          }
+        })();
+        const preferred =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+        setTheme(saved || preferred || "dark");
+        // render any feather icons present in the DOM
+        if (window.feather) feather.replace();
+        if (btn)
+          btn.addEventListener("click", function () {
+            const next =
+              root.getAttribute("data-theme") === "light" ? "dark" : "light";
+            setTheme(next);
+          });
+      })();
+    </script>
+  </body>
 </html>
