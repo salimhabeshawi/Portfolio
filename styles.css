@@ -84,11 +84,11 @@ hr {
 
 #project-title {
   text-align: center;
-  color: var(--monokai-yellow);
+  color: var(--monokai-pink);
   font-size: 2.5rem;
   margin-bottom: 2rem;
   font-weight: 600;
-  text-shadow: 0 0 15px rgba(255, 216, 102, 0.3);
+  text-shadow: none; /* removed glow */
 }
 
 .projects {
@@ -232,20 +232,20 @@ img:hover {
 /* Topbar - blurred banner for socials and theme toggle */
 .topbar {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 0.75rem;
+  right: 0.75rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   z-index: 1000;
   /* semi-transparent background with blur */
   background: rgba(255, 255, 255, 0.04);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  padding: 0.35rem 0.5rem;
-  border-radius: 12px;
+  padding: 0.25rem 0.4rem; /* slightly smaller */
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
 }
 
 .topbar .social-icons {
@@ -255,12 +255,12 @@ img:hover {
 }
 
 .topbar .social-icon {
-  padding: 0.4rem;
-  border-radius: 8px;
+  padding: 0.28rem;
+  border-radius: 7px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.18s ease, transform 0.12s ease, color 0.18s ease;
+  transition: background 0.16s ease, transform 0.12s ease, color 0.16s ease;
 }
 
 .topbar .social-icon:hover {
@@ -269,8 +269,8 @@ img:hover {
 }
 
 .topbar .social-icon svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 
 /* Topbar icons: follow theme foreground color (dark in light theme, light in dark theme) */
@@ -287,9 +287,9 @@ img:hover {
 .topbar .theme-toggle {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 0.35rem;
-  width: 40px;
-  height: 40px;
+  padding: 0.28rem;
+  width: 36px;
+  height: 36px;
 }
 
 /* Light theme overrides */
@@ -371,7 +371,7 @@ img:hover {
   color: var(--monokai-pink);
   font-size: 2rem;
   margin-bottom: 1rem;
-  text-shadow: 0 0 12px rgba(255, 97, 136, 0.3);
+  text-shadow: none; /* removed glow */
 }
 
 .about p {
