@@ -1,0 +1,155 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5} % For icons
+\input{glyphtounicode}
+
+% Font options
+\usepackage[sfdefault]{roboto}  % Sans-serif font for a modern look
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting - Removed \MakeUppercase to fix the titlesec error
+\titleformat{\section}{
+  \vspace{-8pt}\bfseries\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \small#2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[3]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \small#2 \\
+      \textit{\small#3} & \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemi{\small$\bullet$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \textbf{Salim Ahmed}} \\ \vspace{4pt}
+    {\Large \textit{Software Engineer}} \\ \vspace{20pt}
+    \small 
+    \faEnvelope~ \href{mailto:salimhabeshawi@email.com}{salimhabeshawi@email.com} \quad
+    \faPhone~ +251 986164265 \quad
+    \faMapMarkerAlt~ Addis Ababa, Ethiopia \quad
+    \href{https://linkedin.com/in/salimhabeshawi}{\faLinkedin~ linkedin} \quad
+    \href{https://github.com/salimhabeshawi}{\faGithub~ github}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{EDUCATION}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Bachelor of Science in Software Engineering}{04/2028 [Expected]}
+      {Addis Ababa Science and Technology University}{Addis Ababa, Ethiopia}
+      \resumeItemListStart
+        \resumeItem{\textbf{Relevant Coursework:} Data Structures and Algorithms, Database Systems, Object-Oriented Programming, System Analysis and Design, Internet Programming I, Internet Programming II.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Back-end Web Development}{05/2025 -- 01/2026}
+      {ALX}{Online}
+      \resumeItemListStart
+        \resumeItem{Completed an intensive 20-30 hours/week curriculum focused on back-end web development.}
+        \resumeItem{Learned Django and Django REST framework.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{PROJECTS}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {ReclaimIt Lost \& Found Platform}{11/2024 -- 02/2025}
+          {Django, PostgreSQL, Docker}
+          \resumeItemListStart
+            \resumeItem{Built a university-wide item reporting and matching system with RESTful APIs and authentication.}
+            \resumeItem{Implemented automatic item matching logic to reduce manual search effort.}
+            \resumeItem{Designed structured database schema ensuring scalability and data consistency.}
+          \resumeItemListEnd
+          
+      \resumeProjectHeading
+          {CMS AASTU}{11/2023 -- 02/2024}
+          {Java, Spring Boot, Docker, Kubernetes}
+          \resumeItemListStart
+            \resumeItem{Developed a digital clearance management system serving \textbf{10,000+ students} and \textbf{100+ staff}.}
+            \resumeItem{Reduced administrative processing time by \textbf{40\%} through workflow automation.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{SKILLS}
+ \begin{itemize}[leftmargin=0in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Java, SQL, C++, PHP, JavaScript} \\
+     \textbf{Frameworks}{: Django, FastAPI, Laravel, JavaFX, PySide6} \\
+     \textbf{Tools}{: Docker, Linux, Git, GitHub, VS Code, Vim} \\
+     \textbf{Concepts}{: RESTful APIs, Database Design, Clean Architecture, Problem Solving}
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+%-----------AWARDS AND ACHIEVEMENTS-----------
+\section{AWARDS AND ACHIEVEMENTS}
+  \begin{itemize}[leftmargin=0.15in]
+    \item \small{\textbf{Presdential Award} -- Addis Ababa Science and Technology 2024. \hfill 2024}  \vspace{-2pt}
+  \end{itemize}
+
+%-------------------------------------------
+\end{document}

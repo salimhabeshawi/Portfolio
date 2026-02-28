@@ -208,6 +208,17 @@ main {
   box-shadow: -3px 3px 0 var(--hover-shadow);
 }
 
+.resume-btn {
+  gap: 0.45rem;
+}
+
+.resume-btn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  stroke: currentColor;
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
