@@ -99,6 +99,7 @@ body {
 
 .main-nav a:hover {
   background: var(--orange-soft);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .theme-toggle {
@@ -115,6 +116,7 @@ body {
 
 .theme-toggle:hover {
   background: var(--orange-dark);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .theme-toggle svg {
@@ -190,6 +192,7 @@ main {
 
 .btn-primary:hover {
   background: var(--orange-dark);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .btn-outline {
@@ -199,6 +202,7 @@ main {
 
 .btn-outline:hover {
   background: var(--orange-soft);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .about-grid {
@@ -353,6 +357,7 @@ main {
 .social-links a:hover {
   background: var(--orange);
   color: #fff;
+  box-shadow: 3px 3px 0 #000;
 }
 
 .site-footer {
@@ -395,6 +400,7 @@ main {
 
 .scroll-aid:hover {
   background: var(--orange-dark);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .scroll-aid svg {
