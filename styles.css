@@ -85,7 +85,11 @@ body {
   background: transparent;
   color: var(--text);
   text-decoration: none;
+  height: 40px;
   padding: 0.4rem 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.85rem;
   font-weight: 600;
@@ -170,12 +174,13 @@ main {
   justify-content: center;
   border: 2px solid var(--line);
   text-decoration: none;
+  height: 42px;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.86rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  padding: 0.58rem 0.85rem;
+  padding: 0 0.85rem;
 }
 
 .btn-primary {
@@ -262,15 +267,21 @@ main {
 
 .project-card img {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  display: block;
   border-bottom: 2px solid var(--line);
 }
 
 .project-content {
   padding: 0.9rem;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
+}
+
+.project-content .btn {
+  margin-top: auto;
 }
 
 .project-content h3 {
@@ -328,7 +339,11 @@ main {
   color: var(--text);
   text-decoration: none;
   text-align: center;
-  padding: 0.6rem;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.6rem;
   font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   font-size: 0.84rem;
@@ -347,6 +362,52 @@ main {
   letter-spacing: 0.04em;
   font-size: 0.8rem;
   color: var(--muted);
+}
+
+.scroll-aid {
+  position: fixed;
+  right: 1.2rem;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--line);
+  background: var(--orange);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    visibility 0.18s ease;
+  z-index: 20;
+}
+
+.scroll-bottom-aid {
+  bottom: 1.2rem;
+}
+
+.scroll-top-aid {
+  top: 1.2rem;
+}
+
+.scroll-aid:hover {
+  background: var(--orange-dark);
+}
+
+.scroll-aid svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  stroke: currentColor;
+}
+
+.scroll-aid.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 @media (max-width: 980px) {
@@ -420,5 +481,17 @@ main {
   .timeline-list li {
     grid-template-columns: 1fr;
     gap: 0.3rem;
+  }
+
+  .scroll-aid {
+    right: 0.9rem;
+  }
+
+  .scroll-bottom-aid {
+    bottom: 0.9rem;
+  }
+
+  .scroll-top-aid {
+    top: 0.9rem;
   }
 }

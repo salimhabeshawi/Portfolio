@@ -34,11 +34,8 @@
       <main id="home">
         <section class="hero section-lined">
           <p class="eyebrow">Developer Portfolio</p>
-          <h1>Hi, I'm Salim Ahmed.</h1>
-          <p class="hero-subtitle">
-            I build practical desktop tools with clean interfaces and fast
-            workflows.
-          </p>
+          <h1>Hi, I'm Salim Ahmed,</h1>
+          <p class="hero-subtitle">a no-coffee -- no-problem Developer.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects">View Projects</a>
             <a class="btn btn-outline" href="mailto:salimhabeshawi@gmail.com"
@@ -123,6 +120,69 @@
                 >
               </div>
             </article>
+
+            <article class="project-card">
+              <img
+                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80"
+                alt="Task management app interface preview"
+              />
+              <div class="project-content">
+                <h3>TaskBoard Pro</h3>
+                <p>
+                  A focused desktop task board for sprint planning and daily
+                  tracking.
+                </p>
+                <a
+                  class="btn btn-primary"
+                  href="https://github.com/salimhabeshawi"
+                  target="_blank"
+                  rel="noopener"
+                  >Open Repository</a
+                >
+              </div>
+            </article>
+
+            <article class="project-card">
+              <img
+                src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80"
+                alt="Code editor and terminal workflow preview"
+              />
+              <div class="project-content">
+                <h3>SnippetVault</h3>
+                <p>
+                  A local snippet manager for saving, searching, and reusing
+                  code quickly.
+                </p>
+                <a
+                  class="btn btn-primary"
+                  href="https://github.com/salimhabeshawi"
+                  target="_blank"
+                  rel="noopener"
+                  >Open Repository</a
+                >
+              </div>
+            </article>
+
+            <article class="project-card">
+              <img
+                src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1200&q=80"
+                alt="Analytics dashboard and reports preview"
+              />
+              <div class="project-content">
+                <h3>Insight Desk</h3>
+                <p>
+                  A lightweight analytics dashboard for monitoring activity and
+                  exportable reports.
+                </p>
+                <a
+                  class="btn btn-primary"
+                  href="https://github.com/salimhabeshawi"
+                  target="_blank"
+                  rel="noopener"
+                  >Open Repository</a
+                >
+              </div>
+            </article>
           </div>
         </section>
 
@@ -189,13 +249,76 @@
       </footer>
     </div>
 
+    <button
+      id="scrollTopAid"
+      class="scroll-aid scroll-top-aid"
+      type="button"
+      aria-label="Scroll to top"
+      title="Scroll to top"
+    >
+      <i data-feather="chevrons-up"></i>
+    </button>
+
+    <button
+      id="scrollBottomAid"
+      class="scroll-aid scroll-bottom-aid"
+      type="button"
+      aria-label="Scroll to bottom"
+      title="Scroll to bottom"
+    >
+      <i data-feather="chevrons-down"></i>
+    </button>
+
     <script src="https://unpkg.com/feather-icons"></script>
     <script>
       (function () {
         const root = document.documentElement;
         const btn = document.getElementById("themeToggle");
+        const scrollTopAid = document.getElementById("scrollTopAid");
+        const scrollBottomAid = document.getElementById("scrollBottomAid");
         const sun = '<i data-feather="sun"></i>';
         const moon = '<i data-feather="moon"></i>';
+        const scrollAidIdleMs = 1200;
+        let hideScrollAidsTimeout;
+        let lastScrollY = window.scrollY;
+
+        function hideScrollAids() {
+          if (scrollBottomAid) scrollBottomAid.classList.remove("is-visible");
+          if (scrollTopAid) scrollTopAid.classList.remove("is-visible");
+        }
+
+        function scheduleHideScrollAids() {
+          clearTimeout(hideScrollAidsTimeout);
+          hideScrollAidsTimeout = setTimeout(hideScrollAids, scrollAidIdleMs);
+        }
+
+        function updateScrollAids() {
+          if (!scrollBottomAid && !scrollTopAid) return;
+
+          const currentScrollY = window.scrollY;
+          const isScrollingDown = currentScrollY > lastScrollY;
+          const isScrollingUp = currentScrollY < lastScrollY;
+          const nearTop = currentScrollY < 100;
+          const nearBottom =
+            window.innerHeight + currentScrollY >=
+            document.documentElement.scrollHeight - 40;
+
+          if (scrollBottomAid && isScrollingDown && !nearTop && !nearBottom) {
+            scrollBottomAid.classList.add("is-visible");
+          } else if (scrollBottomAid) {
+            scrollBottomAid.classList.remove("is-visible");
+          }
+
+          if (scrollTopAid && isScrollingUp && !nearTop && !nearBottom) {
+            scrollTopAid.classList.add("is-visible");
+          } else if (scrollTopAid) {
+            scrollTopAid.classList.remove("is-visible");
+          }
+
+          scheduleHideScrollAids();
+
+          lastScrollY = currentScrollY;
+        }
 
         function setTheme(theme) {
           root.setAttribute("data-theme", theme);
@@ -233,6 +356,36 @@
               root.getAttribute("data-theme") === "light" ? "dark" : "light";
             setTheme(next);
           });
+        }
+
+        if (scrollTopAid) {
+          scrollTopAid.addEventListener("click", function () {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+
+            hideScrollAids();
+          });
+        }
+
+        if (scrollBottomAid) {
+          scrollBottomAid.addEventListener("click", function () {
+            window.scrollTo({
+              top: document.documentElement.scrollHeight,
+              behavior: "smooth",
+            });
+
+            hideScrollAids();
+          });
+        }
+
+        if (scrollBottomAid || scrollTopAid) {
+          window.addEventListener("scroll", updateScrollAids, {
+            passive: true,
+          });
+
+          updateScrollAids();
         }
       })();
     </script>
