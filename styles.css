@@ -55,6 +55,17 @@ body {
   min-height: 100vh;
 }
 
+a:not([class]) {
+  color: var(--orange-dark);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+a:not([class]):hover {
+  color: var(--orange);
+}
+
 .page-shell {
   width: min(1120px, 94vw);
   margin: 0 auto;
