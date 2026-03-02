@@ -173,7 +173,8 @@ main {
 }
 
 .highlighted {
-  color: var(--text);
+  color: var(--text) !important;
+  font-weight: bold !important;
 }
 
 .hero-actions {
@@ -248,6 +249,56 @@ main {
   color: var(--muted);
 }
 
+.about-content p {
+  margin-bottom: auto;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.35rem;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--line-soft);
+  background: color-mix(in oklab, var(--panel) 88%, var(--orange-soft));
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0.26rem 0.4rem;
+}
+
+.filter-tag {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.filter-tag:hover {
+  background: var(--orange-soft);
+  box-shadow: -2px 2px 0 var(--hover-shadow);
+}
+
+.filter-tag.is-active {
+  border-color: var(--line);
+  background: var(--orange);
+  color: #fff;
+}
+
 .stats-grid {
   list-style: none;
   display: grid;
@@ -309,7 +360,7 @@ main {
 }
 
 .project-content .btn {
-  margin-top: auto;
+  margin-top: 0;
 }
 
 .project-content h3 {
@@ -321,6 +372,19 @@ main {
 .project-content p {
   color: var(--muted);
   font-size: 0.95rem;
+  margin-bottom: auto;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.project-card.is-hidden {
+  display: none;
 }
 
 .timeline-list {
