@@ -172,6 +172,10 @@ main {
   color: var(--muted);
 }
 
+.highlighted {
+  color: var(--text);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -325,7 +329,7 @@ main {
   gap: 0.6rem;
 }
 
-.timeline-list li {
+.timeline-list > li {
   border: 2px solid var(--line-soft);
   padding: 0.75rem;
   display: grid;
@@ -340,14 +344,30 @@ main {
   color: var(--orange);
 }
 
-.timeline-list h3 {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 1rem;
-  margin-bottom: 0.2rem;
-  text-transform: uppercase;
+.timeline-year-box {
+  min-width: 0;
 }
 
-.timeline-list p {
+.timeline-month-list {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.timeline-month {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-achievements {
+  margin: 0.15rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.timeline-achievements li {
   color: var(--muted);
   font-size: 0.95rem;
 }
@@ -518,7 +538,7 @@ main {
     grid-template-columns: 1fr;
   }
 
-  .timeline-list li {
+  .timeline-list > li {
     grid-template-columns: 1fr;
     gap: 0.3rem;
   }
