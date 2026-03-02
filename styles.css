@@ -366,6 +366,16 @@ main {
   margin-top: 0;
 }
 
+.project-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.project-actions .btn {
+  width: 100%;
+}
+
 .project-content h3 {
   font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
