@@ -451,6 +451,13 @@ main {
   display: none;
 }
 
+.blog-index-section,
+.blog-card,
+.blog-post,
+.blog-content {
+  font-family: Inter, Arial, sans-serif;
+}
+
 .blog-date {
   font-family: "JetBrains Mono", monospace;
   color: var(--muted);
@@ -492,7 +499,7 @@ main {
 }
 
 .blog-post {
-  max-width: 860px;
+  width: 100%;
 }
 
 .blog-content {
