@@ -6,6 +6,11 @@ const projects = (await getCollection("projects")).sort(
   (a, b) => a.data.order - b.data.order
 );
 
+const blogPosts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 3);
+
 const aboutSkills = [
   { label: "Python", key: "python" },
   { label: "PHP", key: "php" },
@@ -62,7 +67,7 @@ const socialLinks = [
 
 <BaseLayout
   title="Salim Ahmed | Portfolio"
-  description="Salim Ahmed's portfolio — practical desktop tools, projects, timeline, and contact links."
+  description="Salim Ahmed's portfolio — practical desktop tools, projects, blog, timeline, and contact links."
 >
   <div class="page-shell">
     <header class="site-header">
@@ -71,6 +76,7 @@ const socialLinks = [
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#timeline">Timeline</a>
+        <a href="#blog">Blog</a>
         <a href="#connect">Connect</a>
       </nav>
       <button
@@ -88,14 +94,15 @@ const socialLinks = [
         <h1>Hi, I'm Salim Ahmed,</h1>
         <p class="hero-subtitle">a no-coffee -- no-problem Developer.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-primary" href="mailto:salimhabeshawi@gmail.com">Hire Me</a>
           <a
             class="btn btn-outline resume-btn"
             href="/assets/resume/Salim_Ahmed_Resume.pdf"
             download="Salim_Ahmed_Resume.pdf"
-            ><i data-feather="file-text" aria-hidden="true"></i>Download Resume</a
+            >
+            <span class="material-symbols-outlined" aria-hidden="true">picture_as_pdf</span>
+            Download Resume</a
           >
-          <a class="btn btn-outline" href="mailto:salimhabeshawi@gmail.com">Hire Me</a>
         </div>
       </section>
 
@@ -111,7 +118,9 @@ const socialLinks = [
           <span class="skills-tags" aria-label="Technologies I use">
             {aboutSkills.map((skill) =>
               skill.key ? (
-                <button class="skill-tag filter-tag" type="button" data-tag={skill.key}>{skill.label}</button>
+                <button class="skill-tag filter-tag project-filter-tag" type="button" data-tag={skill.key}
+                  >{skill.label}</button
+                >
               ) : (
                 <span class="skill-tag">{skill.label}</span>
               )
@@ -153,7 +162,7 @@ const socialLinks = [
                   {project.data.technologies.map((technology) =>
                     technology.key ? (
                       <button
-                        class="skill-tag filter-tag project-skill-tag"
+                        class="skill-tag filter-tag project-skill-tag project-filter-tag"
                         type="button"
                         data-tag={technology.key}
                       >
@@ -204,6 +213,35 @@ const socialLinks = [
             </li>
           ))}
         </ol>
+      </section>
+
+      <section id="blog" class="section-lined">
+        <div class="section-head">
+          <h2>Blog</h2>
+          <a class="btn btn-outline" href="/blog">View all posts</a>
+        </div>
+
+        <div class="blog-grid">
+          {blogPosts.map((post) => (
+            <article class="blog-card">
+              <p class="blog-date">{post.data.publishedAt.toLocaleDateString("en-US", { dateStyle: "long" })}</p>
+              <h3>
+                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+              </h3>
+              <p>{post.data.excerpt}</p>
+              {post.data.tags.length ? (
+                <div class="blog-tags" aria-label={`${post.data.title} tags`}>
+                  {post.data.tags.map((tag) => (
+                    <button class="skill-tag filter-tag blog-filter-tag blog-skill-tag" type="button" data-tag={tag}
+                      >{tag}</button
+                    >
+                  ))}
+                </div>
+              ) : null}
+              <a class="btn btn-primary" href={`/blog/${post.slug}/`}>Read post</a>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section id="connect" class="section-lined">
@@ -268,7 +306,6 @@ const socialLinks = [
     </svg>
   </button>
 
-  <script src="https://unpkg.com/feather-icons"></script>
   <script is:inline>
     (function () {
       const root = document.documentElement;
@@ -282,14 +319,17 @@ const socialLinks = [
       const scrollAidIdleMs = 1200;
       let hideScrollAidsTimeout;
       let lastScrollY = window.scrollY;
-      const filterTagButtons = Array.from(document.querySelectorAll(".filter-tag"));
+      const projectFilterTagButtons = Array.from(document.querySelectorAll(".project-filter-tag"));
       const projectCards = Array.from(document.querySelectorAll(".project-card"));
-      const selectedTags = new Set();
+      const selectedProjectTags = new Set();
+      const blogFilterTagButtons = Array.from(document.querySelectorAll(".blog-filter-tag"));
+      const blogCards = Array.from(document.querySelectorAll(".blog-card"));
+      const selectedBlogTags = new Set();
 
-      function syncTagButtons() {
-        filterTagButtons.forEach(function (tagButton) {
+      function syncProjectTagButtons() {
+        projectFilterTagButtons.forEach(function (tagButton) {
           const tag = tagButton.dataset.tag;
-          const isSelected = !!tag && selectedTags.has(tag);
+          const isSelected = !!tag && selectedProjectTags.has(tag);
 
           tagButton.classList.toggle("is-active", isSelected);
           tagButton.setAttribute("aria-pressed", String(isSelected));
@@ -299,7 +339,7 @@ const socialLinks = [
       function applyProjectTagFilter() {
         if (!projectCards.length) return;
 
-        if (!selectedTags.size) {
+        if (!selectedProjectTags.size) {
           projectCards.forEach(function (card) {
             card.classList.remove("is-hidden");
           });
@@ -314,24 +354,72 @@ const socialLinks = [
             .filter(Boolean);
 
           const hasSelectedTag = cardTags.some(function (tag) {
-            return selectedTags.has(tag);
+            return selectedProjectTags.has(tag);
           });
 
           card.classList.toggle("is-hidden", !hasSelectedTag);
         });
       }
 
-      function toggleTagSelection(tag) {
+      function toggleProjectTagSelection(tag) {
         if (!tag) return;
 
-        if (selectedTags.has(tag)) {
-          selectedTags.delete(tag);
+        if (selectedProjectTags.has(tag)) {
+          selectedProjectTags.delete(tag);
         } else {
-          selectedTags.add(tag);
+          selectedProjectTags.add(tag);
         }
 
-        syncTagButtons();
+        syncProjectTagButtons();
         applyProjectTagFilter();
+      }
+
+      function syncBlogTagButtons() {
+        blogFilterTagButtons.forEach(function (tagButton) {
+          const tag = tagButton.dataset.tag;
+          const isSelected = !!tag && selectedBlogTags.has(tag);
+
+          tagButton.classList.toggle("is-active", isSelected);
+          tagButton.setAttribute("aria-pressed", String(isSelected));
+        });
+      }
+
+      function applyBlogTagFilter() {
+        if (!blogCards.length) return;
+
+        if (!selectedBlogTags.size) {
+          blogCards.forEach(function (card) {
+            card.classList.remove("is-hidden");
+          });
+          return;
+        }
+
+        blogCards.forEach(function (card) {
+          const cardTags = Array.from(card.querySelectorAll(".blog-skill-tag"))
+            .map(function (tagButton) {
+              return tagButton.dataset.tag;
+            })
+            .filter(Boolean);
+
+          const hasSelectedTag = cardTags.some(function (tag) {
+            return selectedBlogTags.has(tag);
+          });
+
+          card.classList.toggle("is-hidden", !hasSelectedTag);
+        });
+      }
+
+      function toggleBlogTagSelection(tag) {
+        if (!tag) return;
+
+        if (selectedBlogTags.has(tag)) {
+          selectedBlogTags.delete(tag);
+        } else {
+          selectedBlogTags.add(tag);
+        }
+
+        syncBlogTagButtons();
+        applyBlogTagFilter();
       }
 
       function hideScrollAids() {
@@ -400,17 +488,26 @@ const socialLinks = [
 
       setTheme(savedTheme || "light");
 
-      if (window.feather) feather.replace();
-
-      if (filterTagButtons.length) {
-        filterTagButtons.forEach(function (tagButton) {
+      if (projectFilterTagButtons.length) {
+        projectFilterTagButtons.forEach(function (tagButton) {
           tagButton.setAttribute("aria-pressed", "false");
           tagButton.addEventListener("click", function () {
-            toggleTagSelection(tagButton.dataset.tag);
+            toggleProjectTagSelection(tagButton.dataset.tag);
           });
         });
 
         applyProjectTagFilter();
+      }
+
+      if (blogFilterTagButtons.length) {
+        blogFilterTagButtons.forEach(function (tagButton) {
+          tagButton.setAttribute("aria-pressed", "false");
+          tagButton.addEventListener("click", function () {
+            toggleBlogTagSelection(tagButton.dataset.tag);
+          });
+        });
+
+        applyBlogTagFilter();
       }
 
       if (btn) {

@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = (await getCollection("blog"))
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={`${post.data.title} | Blog`} description={post.data.excerpt}>
+  <div class="page-shell page-shell-post">
+    <header class="site-header">
+      <a class="brand" href="/">Salim Ahmed</a>
+      <nav class="main-nav" aria-label="Post navigation">
+        <a href="/#about">About</a>
+        <a href="/#projects">Projects</a>
+        <a href="/blog">Blog</a>
+        <a href="/#timeline">Timeline</a>
+        <a href="/#connect">Connect</a>
+      </nav>
+      <a class="btn btn-outline" href="/blog">All Posts</a>
+    </header>
+
+    <main>
+      <article class="section-lined blog-post">
+        <p class="blog-date">{post.data.publishedAt.toLocaleDateString("en-US", { dateStyle: "long" })}</p>
+        <h1>{post.data.title}</h1>
+        {post.data.tags.length ? (
+          <div class="blog-tags" aria-label="Post tags">
+            {post.data.tags.map((tag) => (
+              <span class="skill-tag">{tag}</span>
+            ))}
+          </div>
+        ) : null}
+
+        <div class="blog-content">
+          <Content />
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer section-lined">
+      <p>&copy; 2026 Salim Ahmed. All rights reserved.</p>
+    </footer>
+  </div>
+</BaseLayout>

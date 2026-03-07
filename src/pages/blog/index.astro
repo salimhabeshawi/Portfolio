@@ -1,0 +1,127 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+---
+
+<BaseLayout
+  title="Blog | Salim Ahmed"
+  description="Blog posts by Salim Ahmed on software development, shipping products, and practical engineering workflows."
+>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="/">Salim Ahmed</a>
+      <nav class="main-nav" aria-label="Blog navigation">
+        <a href="/#about">About</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#blog">Blog</a>
+        <a href="/#timeline">Timeline</a>
+        <a href="/#connect">Connect</a>
+      </nav>
+      <a class="btn btn-outline" href="/">Back Home</a>
+    </header>
+
+    <main>
+      <section class="section-lined blog-index-section">
+        <h1>Blog</h1>
+        <p class="blog-index-subtitle">Notes on development, product thinking, and building practical tools.</p>
+
+        <div class="blog-grid">
+          {posts.map((post) => (
+            <article class="blog-card">
+              <p class="blog-date">{post.data.publishedAt.toLocaleDateString("en-US", { dateStyle: "long" })}</p>
+              <h2>
+                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+              </h2>
+              <p>{post.data.excerpt}</p>
+              {post.data.tags.length ? (
+                <div class="blog-tags" aria-label={`${post.data.title} tags`}>
+                  {post.data.tags.map((tag) => (
+                    <button class="skill-tag filter-tag blog-filter-tag blog-skill-tag" type="button" data-tag={tag}
+                      >{tag}</button
+                    >
+                  ))}
+                </div>
+              ) : null}
+              <a class="btn btn-primary" href={`/blog/${post.slug}/`}>Read post</a>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer section-lined">
+      <p>&copy; 2026 Salim Ahmed. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const blogFilterTagButtons = Array.from(document.querySelectorAll(".blog-filter-tag"));
+      const blogCards = Array.from(document.querySelectorAll(".blog-card"));
+      const selectedBlogTags = new Set();
+
+      function syncBlogTagButtons() {
+        blogFilterTagButtons.forEach(function (tagButton) {
+          const tag = tagButton.dataset.tag;
+          const isSelected = !!tag && selectedBlogTags.has(tag);
+
+          tagButton.classList.toggle("is-active", isSelected);
+          tagButton.setAttribute("aria-pressed", String(isSelected));
+        });
+      }
+
+      function applyBlogTagFilter() {
+        if (!blogCards.length) return;
+
+        if (!selectedBlogTags.size) {
+          blogCards.forEach(function (card) {
+            card.classList.remove("is-hidden");
+          });
+          return;
+        }
+
+        blogCards.forEach(function (card) {
+          const cardTags = Array.from(card.querySelectorAll(".blog-skill-tag"))
+            .map(function (tagButton) {
+              return tagButton.dataset.tag;
+            })
+            .filter(Boolean);
+
+          const hasSelectedTag = cardTags.some(function (tag) {
+            return selectedBlogTags.has(tag);
+          });
+
+          card.classList.toggle("is-hidden", !hasSelectedTag);
+        });
+      }
+
+      function toggleBlogTagSelection(tag) {
+        if (!tag) return;
+
+        if (selectedBlogTags.has(tag)) {
+          selectedBlogTags.delete(tag);
+        } else {
+          selectedBlogTags.add(tag);
+        }
+
+        syncBlogTagButtons();
+        applyBlogTagFilter();
+      }
+
+      if (blogFilterTagButtons.length) {
+        blogFilterTagButtons.forEach(function (tagButton) {
+          tagButton.setAttribute("aria-pressed", "false");
+          tagButton.addEventListener("click", function () {
+            toggleBlogTagSelection(tagButton.dataset.tag);
+          });
+        });
+
+        applyBlogTagFilter();
+      }
+    })();
+  </script>
+</BaseLayout>

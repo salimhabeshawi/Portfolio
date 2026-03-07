@@ -74,6 +74,11 @@ a:not([class]):hover {
   gap: 1rem;
 }
 
+.page-shell-post {
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
 .site-header {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -241,6 +246,21 @@ main {
   stroke: currentColor;
 }
 
+.resume-btn i {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.resume-btn .material-symbols-outlined {
+  font-size: 18px;
+  line-height: 1;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -249,6 +269,7 @@ main {
 
 .about-grid h2,
 #projects h2,
+#blog h2,
 #timeline h2,
 #connect h2 {
   font-family: "JetBrains Mono", monospace;
@@ -411,6 +432,91 @@ main {
   display: none;
 }
 
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.blog-card {
+  border: 2px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 88%, var(--orange-soft));
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.blog-card.is-hidden {
+  display: none;
+}
+
+.blog-date {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.blog-card h2,
+.blog-card h3 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.blog-card p {
+  color: var(--muted);
+}
+
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin-top: auto;
+  margin-bottom: 0.25rem;
+}
+
+.blog-index-section h1,
+.blog-post h1 {
+  font-family: "JetBrains Mono", monospace;
+  text-transform: uppercase;
+  margin-bottom: 0.55rem;
+}
+
+.blog-index-subtitle {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.blog-post {
+  max-width: 860px;
+}
+
+.blog-content {
+  margin-top: 0.95rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.blog-content h2,
+.blog-content h3 {
+  font-family: "JetBrains Mono", monospace;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.2rem;
+}
+
+.blog-content code {
+  font-family: "JetBrains Mono", monospace;
+}
+
 .timeline-list {
   list-style: none;
   display: grid;
@@ -551,6 +657,10 @@ main {
 
   .project-grid {
     column-count: 1;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
   }
 
   .social-links {
