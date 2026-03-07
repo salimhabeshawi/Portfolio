@@ -1,0 +1,435 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const aboutSkills = [
+  { label: "Python", key: "python" },
+  { label: "PHP", key: "php" },
+  { label: "SQL", key: "sql" },
+  { label: "JavaScript", key: "javascript" },
+  { label: "HTML", key: "html" },
+  { label: "CSS", key: "css" },
+  { label: "Django", key: "django" },
+  { label: "FastAPI", key: "fastapi" },
+  { label: "Laravel", key: "laravel" },
+  { label: "PySide6", key: "pyside6" },
+  { label: "PyQt", key: "pyqt" },
+  { label: "Git" },
+  { label: "GitHub" },
+  { label: "Docker", key: "docker" },
+  { label: "Aiogram", key: "aiogram" },
+  { label: "Python Telegram Bot", key: "python telegram bot" }
+];
+
+const timeline = [
+  {
+    year: "2023",
+    months: [{ month: "June", achievements: ["Set up an online space to share personal tools and projects."] }]
+  },
+  {
+    year: "2024",
+    months: [{ month: "September", achievements: ["Shipped a desktop calculator with a clean GUI flow."] }]
+  },
+  {
+    year: "2025",
+    months: [{ month: "February", achievements: ["Launched a dedicated desktop expenses tracker app."] }]
+  },
+  {
+    year: "2026",
+    months: [
+      {
+        month: "February",
+        achievements: [
+          'Launched <a href="https://t.me/The_Tazkiyah_bot">The Tazkiyah Bot</a> V1.'
+        ]
+      }
+    ]
+  }
+];
+
+const socialLinks = [
+  { label: "Email", href: "mailto:salimhabeshawi@gmail.com" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/salimhabeshawi" },
+  { label: "X", href: "https://x.com/salimhabeshawi" },
+  { label: "GitHub", href: "https://github.com/salimhabeshawi" },
+  { label: "Telegram", href: "https://t.me/salimhabeshawi" }
+];
+---
+
+<BaseLayout
+  title="Salim Ahmed | Portfolio"
+  description="Salim Ahmed's portfolio — practical desktop tools, projects, timeline, and contact links."
+>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#home">Salim Ahmed</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#connect">Connect</a>
+      </nav>
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Toggle theme"
+        aria-pressed="false"
+      ></button>
+    </header>
+
+    <main id="home">
+      <section class="hero section-lined">
+        <p class="eyebrow">Developer Portfolio</p>
+        <h1>Hi, I'm Salim Ahmed,</h1>
+        <p class="hero-subtitle">a no-coffee -- no-problem Developer.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a
+            class="btn btn-outline resume-btn"
+            href="/assets/resume/Salim_Ahmed_Resume.pdf"
+            download="Salim_Ahmed_Resume.pdf"
+            ><i data-feather="file-text" aria-hidden="true"></i>Download Resume</a
+          >
+          <a class="btn btn-outline" href="mailto:salimhabeshawi@gmail.com">Hire Me</a>
+        </div>
+      </section>
+
+      <section id="about" class="section-lined about-grid">
+        <div class="about-content">
+          <h2>About</h2>
+          <p>
+            I am a <span class="highlighted">Back-End Engineer</span> with a capability to build your
+            Full-Stack app. I help businesses ship reliable systems fast, from
+            <span class="highlighted">operations dashboards</span> to
+            <span class="highlighted">internal platforms</span> your team can use every day.
+          </p>
+          <span class="skills-tags" aria-label="Technologies I use">
+            {aboutSkills.map((skill) =>
+              skill.key ? (
+                <button class="skill-tag filter-tag" type="button" data-tag={skill.key}>{skill.label}</button>
+              ) : (
+                <span class="skill-tag">{skill.label}</span>
+              )
+            )}
+          </span>
+        </div>
+        <ul class="stats-grid" aria-label="Profile stats">
+          <li>
+            <strong>2025</strong>
+            <span>Started building publicly</span>
+          </li>
+          <li>
+            <strong>2+</strong>
+            <span>Refined projects and still adding ...</span>
+          </li>
+          <li>
+            <strong>100%</strong>
+            <span>No coffee workflow</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="projects" class="section-lined">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <a class="btn btn-outline" href="https://github.com/salimhabeshawi" target="_blank" rel="noopener"
+            >More on GitHub</a
+          >
+        </div>
+
+        <div class="project-grid">
+          {projects.map((project) => (
+            <article class="project-card">
+              <img src={project.data.image} alt={project.data.imageAlt} />
+              <div class="project-content">
+                <h3>{project.data.title}</h3>
+                <p>{project.data.description}</p>
+                <div class="project-tags" aria-label={`${project.data.title} technologies`}>
+                  {project.data.technologies.map((technology) =>
+                    technology.key ? (
+                      <button
+                        class="skill-tag filter-tag project-skill-tag"
+                        type="button"
+                        data-tag={technology.key}
+                      >
+                        {technology.label}
+                      </button>
+                    ) : (
+                      <span class="skill-tag">{technology.label}</span>
+                    )
+                  )}
+                </div>
+                {project.data.links.length > 1 ? (
+                  <div class="project-actions">
+                    {project.data.links.map((link) => (
+                      <a class="btn btn-primary" href={link.url} target="_blank" rel="noopener">{link.label}</a>
+                    ))}
+                  </div>
+                ) : (
+                  project.data.links.map((link) => (
+                    <a class="btn btn-primary" href={link.url} target="_blank" rel="noopener">{link.label}</a>
+                  ))
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="timeline" class="section-lined">
+        <h2>Timeline</h2>
+        <ol class="timeline-list">
+          {timeline.map((entry) => (
+            <li>
+              <span class="year">{entry.year}</span>
+              <div class="timeline-year-box">
+                <ul class="timeline-month-list">
+                  {entry.months.map((monthEntry) => (
+                    <li>
+                      <strong class="timeline-month">{monthEntry.month}</strong>
+                      <ul class="timeline-achievements">
+                        {monthEntry.achievements.map((achievement) => (
+                          <li set:html={achievement} />
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="connect" class="section-lined">
+        <h2>Connect</h2>
+        <div class="social-links">
+          {socialLinks.map((socialLink) => (
+            <a
+              href={socialLink.href}
+              target={socialLink.href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={socialLink.href.startsWith("mailto:") ? undefined : "noopener"}
+              >{socialLink.label}</a
+            >
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer section-lined">
+      <p>&copy; 2026 Salim Ahmed. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <button
+    id="scrollTopAid"
+    class="scroll-aid scroll-top-aid"
+    type="button"
+    aria-label="Scroll to top"
+    title="Scroll to top"
+  >
+    <i data-feather="chevrons-up"></i>
+  </button>
+
+  <button
+    id="scrollBottomAid"
+    class="scroll-aid scroll-bottom-aid"
+    type="button"
+    aria-label="Scroll to bottom"
+    title="Scroll to bottom"
+  >
+    <i data-feather="chevrons-down"></i>
+  </button>
+
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script is:inline>
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById("themeToggle");
+      const scrollTopAid = document.getElementById("scrollTopAid");
+      const scrollBottomAid = document.getElementById("scrollBottomAid");
+      const sun = '<i data-feather="sun"></i>';
+      const moon = '<i data-feather="moon"></i>';
+      const scrollAidIdleMs = 1200;
+      let hideScrollAidsTimeout;
+      let lastScrollY = window.scrollY;
+      const filterTagButtons = Array.from(document.querySelectorAll(".filter-tag"));
+      const projectCards = Array.from(document.querySelectorAll(".project-card"));
+      const selectedTags = new Set();
+
+      function syncTagButtons() {
+        filterTagButtons.forEach(function (tagButton) {
+          const tag = tagButton.dataset.tag;
+          const isSelected = !!tag && selectedTags.has(tag);
+
+          tagButton.classList.toggle("is-active", isSelected);
+          tagButton.setAttribute("aria-pressed", String(isSelected));
+        });
+      }
+
+      function applyProjectTagFilter() {
+        if (!projectCards.length) return;
+
+        if (!selectedTags.size) {
+          projectCards.forEach(function (card) {
+            card.classList.remove("is-hidden");
+          });
+          return;
+        }
+
+        projectCards.forEach(function (card) {
+          const cardTags = Array.from(card.querySelectorAll(".project-skill-tag"))
+            .map(function (tagButton) {
+              return tagButton.dataset.tag;
+            })
+            .filter(Boolean);
+
+          const hasSelectedTag = cardTags.some(function (tag) {
+            return selectedTags.has(tag);
+          });
+
+          card.classList.toggle("is-hidden", !hasSelectedTag);
+        });
+      }
+
+      function toggleTagSelection(tag) {
+        if (!tag) return;
+
+        if (selectedTags.has(tag)) {
+          selectedTags.delete(tag);
+        } else {
+          selectedTags.add(tag);
+        }
+
+        syncTagButtons();
+        applyProjectTagFilter();
+      }
+
+      function hideScrollAids() {
+        if (scrollBottomAid) scrollBottomAid.classList.remove("is-visible");
+        if (scrollTopAid) scrollTopAid.classList.remove("is-visible");
+      }
+
+      function scheduleHideScrollAids() {
+        clearTimeout(hideScrollAidsTimeout);
+        hideScrollAidsTimeout = setTimeout(hideScrollAids, scrollAidIdleMs);
+      }
+
+      function updateScrollAids() {
+        if (!scrollBottomAid && !scrollTopAid) return;
+
+        const currentScrollY = window.scrollY;
+        const isScrollingDown = currentScrollY > lastScrollY;
+        const isScrollingUp = currentScrollY < lastScrollY;
+        const nearTop = currentScrollY < 100;
+        const nearBottom =
+          window.innerHeight + currentScrollY >= document.documentElement.scrollHeight - 40;
+
+        if (scrollBottomAid && isScrollingDown && !nearTop && !nearBottom) {
+          scrollBottomAid.classList.add("is-visible");
+        } else if (scrollBottomAid) {
+          scrollBottomAid.classList.remove("is-visible");
+        }
+
+        if (scrollTopAid && isScrollingUp && !nearTop && !nearBottom) {
+          scrollTopAid.classList.add("is-visible");
+        } else if (scrollTopAid) {
+          scrollTopAid.classList.remove("is-visible");
+        }
+
+        scheduleHideScrollAids();
+
+        lastScrollY = currentScrollY;
+      }
+
+      function setTheme(theme) {
+        root.setAttribute("data-theme", theme);
+
+        try {
+          localStorage.setItem("theme", theme);
+        } catch {
+          // noop
+        }
+
+        if (!btn) return;
+
+        btn.innerHTML = theme === "light" ? moon : sun;
+        if (!window.feather) {
+          btn.textContent = theme === "light" ? "☾" : "☀";
+        }
+        btn.setAttribute(
+          "aria-label",
+          theme === "light" ? "Switch to dark mode" : "Switch to light mode"
+        );
+        btn.setAttribute("aria-pressed", String(theme === "light"));
+
+        if (window.feather) feather.replace();
+      }
+
+      const savedTheme = (function () {
+        try {
+          return localStorage.getItem("theme");
+        } catch {
+          return null;
+        }
+      })();
+
+      setTheme(savedTheme || "light");
+
+      if (window.feather) feather.replace();
+
+      if (filterTagButtons.length) {
+        filterTagButtons.forEach(function (tagButton) {
+          tagButton.setAttribute("aria-pressed", "false");
+          tagButton.addEventListener("click", function () {
+            toggleTagSelection(tagButton.dataset.tag);
+          });
+        });
+
+        applyProjectTagFilter();
+      }
+
+      if (btn) {
+        btn.addEventListener("click", function () {
+          const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+          setTheme(next);
+        });
+      }
+
+      if (scrollTopAid) {
+        scrollTopAid.addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+          hideScrollAids();
+        });
+      }
+
+      if (scrollBottomAid) {
+        scrollBottomAid.addEventListener("click", function () {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth"
+          });
+
+          hideScrollAids();
+        });
+      }
+
+      if (scrollBottomAid || scrollTopAid) {
+        window.addEventListener("scroll", updateScrollAids, {
+          passive: true
+        });
+
+        updateScrollAids();
+      }
+    })();
+  </script>
+</BaseLayout>

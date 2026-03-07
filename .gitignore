@@ -1,2 +1,12 @@
-# Local planning docs
-PROJECT_UPDATE_GUIDE.md
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+.astro/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
