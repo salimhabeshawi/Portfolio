@@ -10,17 +10,17 @@ const projects = defineCollection({
     technologies: z.array(
       z.object({
         label: z.string(),
-        key: z.string().optional()
-      })
+        key: z.string().optional(),
+      }),
     ),
     links: z.array(
       z.object({
         label: z.string(),
-        url: z.string().url()
-      })
+        url: z.string().url(),
+      }),
     ),
-    order: z.number().int().nonnegative()
-  })
+    order: z.number().int().nonnegative(),
+  }),
 });
 
 export const collections = { projects };
