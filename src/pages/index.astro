@@ -233,7 +233,18 @@ const socialLinks = [
     aria-label="Scroll to top"
     title="Scroll to top"
   >
-    <i data-feather="chevrons-up"></i>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="17 11 12 6 7 11"></polyline>
+      <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
   </button>
 
   <button
@@ -243,7 +254,18 @@ const socialLinks = [
     aria-label="Scroll to bottom"
     title="Scroll to bottom"
   >
-    <i data-feather="chevrons-down"></i>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="7 13 12 18 17 13"></polyline>
+      <polyline points="7 6 12 11 17 6"></polyline>
+    </svg>
   </button>
 
   <script src="https://unpkg.com/feather-icons"></script>
@@ -253,8 +275,10 @@ const socialLinks = [
       const btn = document.getElementById("themeToggle");
       const scrollTopAid = document.getElementById("scrollTopAid");
       const scrollBottomAid = document.getElementById("scrollBottomAid");
-      const sun = '<i data-feather="sun"></i>';
-      const moon = '<i data-feather="moon"></i>';
+      const sun =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.22 4.22l1.77 1.77"></path><path d="M18.01 18.01l1.77 1.77"></path><path d="M2.5 12h2.5"></path><path d="M19 12h2.5"></path><path d="M4.22 19.78l1.77-1.77"></path><path d="M18.01 5.99l1.77-1.77"></path></svg>';
+      const moon =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.7 14.2a8.8 8.8 0 1 1-10.9-10.9 7.2 7.2 0 0 0 10.9 10.9z"></path></svg>';
       const scrollAidIdleMs = 1200;
       let hideScrollAidsTimeout;
       let lastScrollY = window.scrollY;
@@ -359,16 +383,11 @@ const socialLinks = [
         if (!btn) return;
 
         btn.innerHTML = theme === "light" ? moon : sun;
-        if (!window.feather) {
-          btn.textContent = theme === "light" ? "☾" : "☀";
-        }
         btn.setAttribute(
           "aria-label",
           theme === "light" ? "Switch to dark mode" : "Switch to light mode"
         );
         btn.setAttribute("aria-pressed", String(theme === "light"));
-
-        if (window.feather) feather.replace();
       }
 
       const savedTheme = (function () {
