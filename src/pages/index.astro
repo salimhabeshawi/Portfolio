@@ -1,6 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import aboutSkills from "../data/about-skills.json";
+import timeline from "../data/timeline.json";
+import socialLinks from "../data/social-links.json";
+import homePageScriptUrl from "../scripts/home-page.js?url";
 
 const projects = (await getCollection("projects")).sort(
   (a, b) => a.data.order - b.data.order
@@ -10,59 +14,6 @@ const blogPosts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
   .slice(0, 3);
-
-const aboutSkills = [
-  { label: "Python", key: "python" },
-  { label: "PHP", key: "php" },
-  { label: "SQL", key: "sql" },
-  { label: "JavaScript", key: "javascript" },
-  { label: "HTML", key: "html" },
-  { label: "CSS", key: "css" },
-  { label: "Django", key: "django" },
-  { label: "FastAPI", key: "fastapi" },
-  { label: "Laravel", key: "laravel" },
-  { label: "PySide6", key: "pyside6" },
-  { label: "PyQt", key: "pyqt" },
-  { label: "Git" },
-  { label: "GitHub" },
-  { label: "Docker", key: "docker" },
-  { label: "Aiogram", key: "aiogram" },
-  { label: "Python Telegram Bot", key: "python telegram bot" }
-];
-
-const timeline = [
-  {
-    year: "2023",
-    months: [{ month: "June", achievements: ["Set up an online space to share personal tools and projects."] }]
-  },
-  {
-    year: "2024",
-    months: [{ month: "September", achievements: ["Shipped a desktop calculator with a clean GUI flow."] }]
-  },
-  {
-    year: "2025",
-    months: [{ month: "February", achievements: ["Launched a dedicated desktop expenses tracker app."] }]
-  },
-  {
-    year: "2026",
-    months: [
-      {
-        month: "February",
-        achievements: [
-          'Launched <a href="https://t.me/The_Tazkiyah_bot">The Tazkiyah Bot</a> V1.'
-        ]
-      }
-    ]
-  }
-];
-
-const socialLinks = [
-  { label: "Email", href: "mailto:salimhabeshawi@gmail.com" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/salimhabeshawi" },
-  { label: "X", href: "https://x.com/salimhabeshawi" },
-  { label: "GitHub", href: "https://github.com/salimhabeshawi" },
-  { label: "Telegram", href: "https://t.me/salimhabeshawi" }
-];
 ---
 
 <BaseLayout
@@ -90,7 +41,7 @@ const socialLinks = [
 
     <main id="home">
       <section class="hero section-lined">
-        <p class="eyebrow">Developer Portfolio</p>
+        <p class="eyebrow">// Developer Portfolio</p>
         <h1>Hi, I'm Salim Ahmed,</h1>
         <p class="hero-subtitle">a no-coffee -- no-problem Developer.</p>
         <div class="hero-actions">
@@ -192,27 +143,32 @@ const socialLinks = [
 
       <section id="timeline" class="section-lined">
         <h2>Timeline</h2>
-        <ol class="timeline-list">
-          {timeline.map((entry) => (
-            <li>
-              <span class="year">{entry.year}</span>
-              <div class="timeline-year-box">
-                <ul class="timeline-month-list">
-                  {entry.months.map((monthEntry) => (
-                    <li>
-                      <strong class="timeline-month">{monthEntry.month}</strong>
-                      <ul class="timeline-achievements">
-                        {monthEntry.achievements.map((achievement) => (
-                          <li set:html={achievement} />
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <div class="timeline-scroll-shell">
+          <ol class="timeline-list">
+            {timeline.map((entry) => (
+              <li>
+                <span class="year">{entry.year}</span>
+                <div class="timeline-year-box">
+                  <ul class="timeline-month-list">
+                    {entry.months.map((monthEntry) => (
+                      <li>
+                        <strong class="timeline-month">{monthEntry.month}</strong>
+                        <ul class="timeline-achievements">
+                          {monthEntry.achievements.map((achievement) => (
+                            <li set:html={achievement} />
+                          ))}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div class="timeline-scrollbar" aria-hidden="true">
+            <div class="timeline-scrollbar-thumb"></div>
+          </div>
+        </div>
       </section>
 
       <section id="blog" class="section-lined">
@@ -260,7 +216,7 @@ const socialLinks = [
     </main>
 
     <footer class="site-footer section-lined">
-      <p>&copy; 2026 Salim Ahmed. All rights reserved.</p>
+      <p>&copy; 2026 Salim Ahmed.</p>
     </footer>
   </div>
 
@@ -306,246 +262,5 @@ const socialLinks = [
     </svg>
   </button>
 
-  <script is:inline>
-    (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById("themeToggle");
-      const scrollTopAid = document.getElementById("scrollTopAid");
-      const scrollBottomAid = document.getElementById("scrollBottomAid");
-      const sun =
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.22 4.22l1.77 1.77"></path><path d="M18.01 18.01l1.77 1.77"></path><path d="M2.5 12h2.5"></path><path d="M19 12h2.5"></path><path d="M4.22 19.78l1.77-1.77"></path><path d="M18.01 5.99l1.77-1.77"></path></svg>';
-      const moon =
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.7 14.2a8.8 8.8 0 1 1-10.9-10.9 7.2 7.2 0 0 0 10.9 10.9z"></path></svg>';
-      const scrollAidIdleMs = 1200;
-      let hideScrollAidsTimeout;
-      let lastScrollY = window.scrollY;
-      const projectFilterTagButtons = Array.from(document.querySelectorAll(".project-filter-tag"));
-      const projectCards = Array.from(document.querySelectorAll(".project-card"));
-      const selectedProjectTags = new Set();
-      const blogFilterTagButtons = Array.from(document.querySelectorAll(".blog-filter-tag"));
-      const blogCards = Array.from(document.querySelectorAll(".blog-card"));
-      const selectedBlogTags = new Set();
-
-      function syncProjectTagButtons() {
-        projectFilterTagButtons.forEach(function (tagButton) {
-          const tag = tagButton.dataset.tag;
-          const isSelected = !!tag && selectedProjectTags.has(tag);
-
-          tagButton.classList.toggle("is-active", isSelected);
-          tagButton.setAttribute("aria-pressed", String(isSelected));
-        });
-      }
-
-      function applyProjectTagFilter() {
-        if (!projectCards.length) return;
-
-        if (!selectedProjectTags.size) {
-          projectCards.forEach(function (card) {
-            card.classList.remove("is-hidden");
-          });
-          return;
-        }
-
-        projectCards.forEach(function (card) {
-          const cardTags = Array.from(card.querySelectorAll(".project-skill-tag"))
-            .map(function (tagButton) {
-              return tagButton.dataset.tag;
-            })
-            .filter(Boolean);
-
-          const hasSelectedTag = cardTags.some(function (tag) {
-            return selectedProjectTags.has(tag);
-          });
-
-          card.classList.toggle("is-hidden", !hasSelectedTag);
-        });
-      }
-
-      function toggleProjectTagSelection(tag) {
-        if (!tag) return;
-
-        if (selectedProjectTags.has(tag)) {
-          selectedProjectTags.delete(tag);
-        } else {
-          selectedProjectTags.add(tag);
-        }
-
-        syncProjectTagButtons();
-        applyProjectTagFilter();
-      }
-
-      function syncBlogTagButtons() {
-        blogFilterTagButtons.forEach(function (tagButton) {
-          const tag = tagButton.dataset.tag;
-          const isSelected = !!tag && selectedBlogTags.has(tag);
-
-          tagButton.classList.toggle("is-active", isSelected);
-          tagButton.setAttribute("aria-pressed", String(isSelected));
-        });
-      }
-
-      function applyBlogTagFilter() {
-        if (!blogCards.length) return;
-
-        if (!selectedBlogTags.size) {
-          blogCards.forEach(function (card) {
-            card.classList.remove("is-hidden");
-          });
-          return;
-        }
-
-        blogCards.forEach(function (card) {
-          const cardTags = Array.from(card.querySelectorAll(".blog-skill-tag"))
-            .map(function (tagButton) {
-              return tagButton.dataset.tag;
-            })
-            .filter(Boolean);
-
-          const hasSelectedTag = cardTags.some(function (tag) {
-            return selectedBlogTags.has(tag);
-          });
-
-          card.classList.toggle("is-hidden", !hasSelectedTag);
-        });
-      }
-
-      function toggleBlogTagSelection(tag) {
-        if (!tag) return;
-
-        if (selectedBlogTags.has(tag)) {
-          selectedBlogTags.delete(tag);
-        } else {
-          selectedBlogTags.add(tag);
-        }
-
-        syncBlogTagButtons();
-        applyBlogTagFilter();
-      }
-
-      function hideScrollAids() {
-        if (scrollBottomAid) scrollBottomAid.classList.remove("is-visible");
-        if (scrollTopAid) scrollTopAid.classList.remove("is-visible");
-      }
-
-      function scheduleHideScrollAids() {
-        clearTimeout(hideScrollAidsTimeout);
-        hideScrollAidsTimeout = setTimeout(hideScrollAids, scrollAidIdleMs);
-      }
-
-      function updateScrollAids() {
-        if (!scrollBottomAid && !scrollTopAid) return;
-
-        const currentScrollY = window.scrollY;
-        const isScrollingDown = currentScrollY > lastScrollY;
-        const isScrollingUp = currentScrollY < lastScrollY;
-        const nearTop = currentScrollY < 100;
-        const nearBottom =
-          window.innerHeight + currentScrollY >= document.documentElement.scrollHeight - 40;
-
-        if (scrollBottomAid && isScrollingDown && !nearTop && !nearBottom) {
-          scrollBottomAid.classList.add("is-visible");
-        } else if (scrollBottomAid) {
-          scrollBottomAid.classList.remove("is-visible");
-        }
-
-        if (scrollTopAid && isScrollingUp && !nearTop && !nearBottom) {
-          scrollTopAid.classList.add("is-visible");
-        } else if (scrollTopAid) {
-          scrollTopAid.classList.remove("is-visible");
-        }
-
-        scheduleHideScrollAids();
-
-        lastScrollY = currentScrollY;
-      }
-
-      function setTheme(theme) {
-        root.setAttribute("data-theme", theme);
-
-        try {
-          localStorage.setItem("theme", theme);
-        } catch {
-          // noop
-        }
-
-        if (!btn) return;
-
-        btn.innerHTML = theme === "light" ? moon : sun;
-        btn.setAttribute(
-          "aria-label",
-          theme === "light" ? "Switch to dark mode" : "Switch to light mode"
-        );
-        btn.setAttribute("aria-pressed", String(theme === "light"));
-      }
-
-      const savedTheme = (function () {
-        try {
-          return localStorage.getItem("theme");
-        } catch {
-          return null;
-        }
-      })();
-
-      setTheme(savedTheme || "light");
-
-      if (projectFilterTagButtons.length) {
-        projectFilterTagButtons.forEach(function (tagButton) {
-          tagButton.setAttribute("aria-pressed", "false");
-          tagButton.addEventListener("click", function () {
-            toggleProjectTagSelection(tagButton.dataset.tag);
-          });
-        });
-
-        applyProjectTagFilter();
-      }
-
-      if (blogFilterTagButtons.length) {
-        blogFilterTagButtons.forEach(function (tagButton) {
-          tagButton.setAttribute("aria-pressed", "false");
-          tagButton.addEventListener("click", function () {
-            toggleBlogTagSelection(tagButton.dataset.tag);
-          });
-        });
-
-        applyBlogTagFilter();
-      }
-
-      if (btn) {
-        btn.addEventListener("click", function () {
-          const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-          setTheme(next);
-        });
-      }
-
-      if (scrollTopAid) {
-        scrollTopAid.addEventListener("click", function () {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-
-          hideScrollAids();
-        });
-      }
-
-      if (scrollBottomAid) {
-        scrollBottomAid.addEventListener("click", function () {
-          window.scrollTo({
-            top: document.documentElement.scrollHeight,
-            behavior: "smooth"
-          });
-
-          hideScrollAids();
-        });
-      }
-
-      if (scrollBottomAid || scrollTopAid) {
-        window.addEventListener("scroll", updateScrollAids, {
-          passive: true
-        });
-
-        updateScrollAids();
-      }
-    })();
-  </script>
+  <script type="module" src={homePageScriptUrl}></script>
 </BaseLayout>

@@ -36,6 +36,22 @@ html {
   scroll-behavior: smooth;
 }
 
+html.is-dragging-site-scrollbar {
+  scroll-behavior: auto !important;
+}
+
+html,
+body {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
 :where(a, button):focus-visible {
   outline: 2px solid var(--orange);
   outline-offset: 3px;
@@ -53,6 +69,58 @@ body {
   font-family: Inter, Arial, sans-serif;
   line-height: 1.55;
   min-height: 100vh;
+}
+
+.site-scrollbar {
+  position: fixed;
+  top: 0.6rem;
+  right: 0;
+  bottom: 0.6rem;
+  width: 0.9rem;
+  border: 2px solid var(--line-soft);
+  background: color-mix(in oklab, var(--panel) 82%, var(--bg));
+  z-index: 1100;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.site-scrollbar.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.site-scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  background: linear-gradient(
+    180deg,
+    var(--orange) 0%,
+    var(--orange-dark) 100%
+  );
+  border: 2px solid color-mix(in oklab, var(--panel) 82%, var(--bg));
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  will-change: transform;
+}
+
+.site-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--orange-dark) 0%,
+    var(--orange) 100%
+  );
+}
+
+.site-scrollbar-thumb.is-dragging {
+  cursor: grabbing;
+}
+
+body.is-dragging-site-scrollbar {
+  user-select: none;
 }
 
 a:not([class]) {
@@ -524,10 +592,69 @@ main {
   font-family: "JetBrains Mono", monospace;
 }
 
+.timeline-scroll-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 0.9rem;
+  gap: 0.35rem;
+  align-items: stretch;
+}
+
 .timeline-list {
   list-style: none;
   display: grid;
   gap: 0.6rem;
+  height: 26rem;
+  overflow-y: auto;
+  padding-right: 0.05rem;
+  overscroll-behavior: auto;
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.timeline-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.timeline-scrollbar {
+  position: relative;
+  border: 2px solid var(--line-soft);
+  background: color-mix(in oklab, var(--panel) 82%, var(--bg));
+  min-height: 0;
+}
+
+.timeline-scrollbar.is-hidden {
+  opacity: 0;
+}
+
+.timeline-scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  background: linear-gradient(
+    180deg,
+    var(--orange) 0%,
+    var(--orange-dark) 100%
+  );
+  border: 2px solid color-mix(in oklab, var(--panel) 82%, var(--bg));
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.timeline-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--orange-dark) 0%,
+    var(--orange) 100%
+  );
+}
+
+.timeline-scrollbar-thumb.is-dragging {
+  cursor: grabbing;
 }
 
 .timeline-list > li {
@@ -751,6 +878,10 @@ main {
     gap: 0.3rem;
   }
 
+  .timeline-list {
+    height: 20rem;
+  }
+
   .scroll-aid {
     right: 0.9rem;
   }
@@ -761,5 +892,12 @@ main {
 
   .scroll-top-aid {
     top: 0.9rem;
+  }
+
+  .site-scrollbar {
+    top: 0.5rem;
+    right: 0;
+    bottom: 0.5rem;
+    width: 0.8rem;
   }
 }

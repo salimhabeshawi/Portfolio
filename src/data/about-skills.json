@@ -1,0 +1,18 @@
+[
+  { "label": "Python", "key": "python" },
+  { "label": "PHP", "key": "php" },
+  { "label": "SQL", "key": "sql" },
+  { "label": "JavaScript", "key": "javascript" },
+  { "label": "HTML", "key": "html" },
+  { "label": "CSS", "key": "css" },
+  { "label": "Django", "key": "django" },
+  { "label": "FastAPI", "key": "fastapi" },
+  { "label": "Laravel", "key": "laravel" },
+  { "label": "PySide6", "key": "pyside6" },
+  { "label": "PyQt", "key": "pyqt" },
+  { "label": "Git" },
+  { "label": "GitHub" },
+  { "label": "Docker", "key": "docker" },
+  { "label": "Aiogram", "key": "aiogram" },
+  { "label": "Python Telegram Bot", "key": "python telegram bot" }
+]

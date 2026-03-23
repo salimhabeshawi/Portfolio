@@ -1,0 +1,35 @@
+[
+  {
+    "year": "2024",
+    "months": [
+      {
+        "month": "November",
+        "achievements": ["Started programming (with C++) for the very first time."]
+      }
+    ]
+  },
+  {
+    "year": "2025",
+    "months": [
+      {
+        "month": "July",
+        "achievements": ["Made a SHANZ - Expenses using Python and PyQt."]
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "months": [
+      {
+        "month": "February",
+        "achievements": [
+          "Launched <a href=\"https://t.me/The_Tazkiyah_bot\">The Tazkiyah Bot</a> V1."
+        ]
+      },
+      {
+        "month": "March",
+        "achievements": ["I began exploring Laravel with the intention of switching my core tech stack to it."]
+      }
+    ]
+  }
+]

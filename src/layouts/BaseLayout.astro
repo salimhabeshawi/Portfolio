@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import siteScrollbarScriptUrl from "../scripts/site-scrollbar.js?url";
+import themeScriptUrl from "../scripts/theme.js?url";
 
 interface Props {
   title: string;
@@ -60,5 +62,12 @@ const ogImage = `${siteUrl}assets/images/og-preview.png`;
   </head>
   <body>
     <slot />
+
+    <div class="site-scrollbar is-hidden" aria-hidden="true">
+      <div class="site-scrollbar-thumb"></div>
+    </div>
+
+    <script type="module" src={themeScriptUrl}></script>
+    <script type="module" src={siteScrollbarScriptUrl}></script>
   </body>
 </html>
