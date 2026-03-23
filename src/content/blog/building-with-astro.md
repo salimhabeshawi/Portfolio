@@ -8,7 +8,7 @@ tags:
   - portfolio
 ---
 
-I moved this portfolio to Astro to make updates easier and more structured.
+I moved this portfolio to **Astro** to make updates easier and more structured.
 
 Instead of manually editing one large HTML page, I now keep content in focused Markdown files and let Astro render the UI.
 
