@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
 
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
@@ -53,9 +54,7 @@ const posts = (await getCollection("blog"))
       </section>
     </main>
 
-    <footer class="site-footer section-lined">
-      <p>&copy; 2026 Salim Ahmed. All rights reserved.</p>
-    </footer>
+    <SiteFooter />
   </div>
 
   <script is:inline>

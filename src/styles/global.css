@@ -735,6 +735,7 @@ main {
   letter-spacing: 0.04em;
   font-size: 0.8rem;
   color: var(--muted);
+  margin-bottom: 1rem;
 }
 
 .scroll-aid {
