@@ -23,12 +23,10 @@ description: One sentence describing what it does.
 image: /assets/images/new-tool.png
 imageAlt: New Tool preview
 technologies:
-  - label: Python
-    key: python
-  - label: FastAPI
-    key: fastapi
-  - label: Git
-  - label: GitHub
+  - python
+  - fastapi
+  - git
+  - github
 links:
   - label: Repository
     url: https://github.com/username/new-tool
@@ -64,8 +62,8 @@ draft: false
 
 ## Tags + Filtering Rules
 
-- If a technology should be filterable, include a `key` that matches one of the About section filter keys.
-- If a technology is display-only, omit `key` (example: `Git`, `GitHub`).
+- In project files, list technologies as keys only (`python`, `fastapi`, `git`, etc.).
+- Labels are generated automatically from the About skills data.
 - Keep keys consistent (`python`, `fastapi`, `django`, etc.) so filtering works correctly.
 
 ## Images

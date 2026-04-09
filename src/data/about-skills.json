@@ -10,8 +10,8 @@
   { "label": "Laravel", "key": "laravel" },
   { "label": "PySide6", "key": "pyside6" },
   { "label": "PyQt", "key": "pyqt" },
-  { "label": "Git" },
-  { "label": "GitHub" },
+  { "label": "Git", "key": "git" },
+  { "label": "GitHub", "key": "github" },
   { "label": "Docker", "key": "docker" },
   { "label": "Aiogram", "key": "aiogram" },
   { "label": "Python Telegram Bot", "key": "python telegram bot" }

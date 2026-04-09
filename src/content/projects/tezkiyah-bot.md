@@ -4,16 +4,12 @@ description: A practical Telegram companion that helps Muslims build consistent 
 image: /assets/images/tazkiyah_bot.jpg
 imageAlt: Tezkiyah Bot Islamic learning and habit-building interface preview
 technologies:
-  - label: FastAPI
-    key: fastapi
-  - label: Aiogram
-    key: aiogram
-  - label: Docker
-    key: docker
-  - label: Python
-    key: python
-  - label: Git
-  - label: GitHub
+  - fastapi
+  - aiogram
+  - docker
+  - python
+  - git
+  - github
 links:
   - label: Repository
     url: https://github.com/salimhabeshawi

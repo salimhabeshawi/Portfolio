@@ -7,12 +7,7 @@ const projects = defineCollection({
     description: z.string(),
     image: z.string(),
     imageAlt: z.string(),
-    technologies: z.array(
-      z.object({
-        label: z.string(),
-        key: z.string().optional(),
-      }),
-    ),
+    technologies: z.array(z.string()),
     links: z.array(
       z.object({
         label: z.string(),

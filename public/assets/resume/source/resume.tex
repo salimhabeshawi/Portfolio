@@ -1,3 +1,6 @@
+I've updated the project headers to use a hyphen instead of a comma. I also noticed a small typo in the "Katib" description ("Destraction") and corrected it to "Distraction" for a more professional look.
+
+```latex
 \documentclass[letterpaper,11pt]{article}
 
 \usepackage{latexsym}
@@ -36,7 +39,7 @@
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting - Removed \MakeUppercase to fix the titlesec error
+% Sections formatting
 \titleformat{\section}{
   \vspace{-8pt}\bfseries\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
@@ -63,7 +66,7 @@
 \newcommand{\resumeProjectHeading}[3]{
   \vspace{-2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & \small#2 \\
+      #1 & \small#2 \\
       \textit{\small#3} & \\
     \end{tabular*}\vspace{-7pt}
 }
@@ -88,7 +91,7 @@
     \small 
     \faEnvelope~ \href{mailto:salimhabeshawi@email.com}{salimhabeshawi@email.com} \quad
     \faPhone~ +251 986164265 \quad
-    \faMapMarkerAlt~ Addis Ababa, Ethiopia \quad
+    \faMapMarker~ Addis Ababa, Ethiopia \quad
     \href{https://linkedin.com/in/salimhabeshawi}{\faLinkedin~ linkedin} \quad
     \href{https://github.com/salimhabeshawi}{\faGithub~ github}
 \end{center}
@@ -116,20 +119,21 @@
 \section{PROJECTS}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {ReclaimIt Lost \& Found Platform}{11/2024 -- 02/2025}
+          {\href{https://github.com/salimhabeshawi/katib}{\textbf{Katib} - Distraction-Free Writing \hspace{2pt} \small\faExternalLink*}}{04/2026}
+          {Python 3.11+, PySide6 (Qt6), markdown-it-py, markdown-pdf, Pygments}
+          \resumeItemListStart
+            \resumeItem{Built a local-first desktop Markdown writing app with a distraction-free editor, file tree navigation, and live preview.}
+            \resumeItem{Implemented Vim-style modal editing and per-document RTL/LTR direction control for English and Arabic writing workflows.}
+            \resumeItem{Added local PDF export with typography-aware rendering using a markdown-it-py based pipeline.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\href{https://github.com/salimhabeshawi/reclaimit-backend}{\textbf{ReclaimIt} - Lost \& Found Platform \hspace{2pt} \small\faExternalLink*}}{11/2024 -- 02/2025}
           {Django, PostgreSQL, Docker}
           \resumeItemListStart
             \resumeItem{Built a university-wide item reporting and matching system with RESTful APIs and authentication.}
             \resumeItem{Implemented automatic item matching logic to reduce manual search effort.}
             \resumeItem{Designed structured database schema ensuring scalability and data consistency.}
-          \resumeItemListEnd
-          
-      \resumeProjectHeading
-          {CMS AASTU}{11/2023 -- 02/2024}
-          {Java, Spring Boot, Docker, Kubernetes}
-          \resumeItemListStart
-            \resumeItem{Developed a digital clearance management system serving \textbf{10,000+ students} and \textbf{100+ staff}.}
-            \resumeItem{Reduced administrative processing time by \textbf{40\%} through workflow automation.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
@@ -147,9 +151,32 @@
 
 %-----------AWARDS AND ACHIEVEMENTS-----------
 \section{AWARDS AND ACHIEVEMENTS}
-  \begin{itemize}[leftmargin=0.15in]
-    \item \small{\textbf{Presdential Award} -- Addis Ababa Science and Technology 2024. \hfill 2024}  \vspace{-2pt}
-  \end{itemize}
+  \resumeSubHeadingListStart
+    \item 
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \small\textbf{Presidential Award} & \small 2024 \\
+      \multicolumn{2}{p{0.97\textwidth}}{\small - Recognition for academic excellence at Addis Ababa Science and Technology University.}
+    \end{tabular*} \vspace{-5pt}
+
+    \item 
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \small\href{https://savanna.alxafrica.com/certificates/Z6938eGNLs}{\textbf{ALX Professional Foundation} \hspace{2pt} \faExternalLink*} & \small 2024 \\
+      \multicolumn{2}{p{0.97\textwidth}}{\small - Specialized training in soft skills, career readiness, and professional communication.}
+    \end{tabular*} \vspace{-5pt}
+
+    \item 
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \small\href{https://savanna.alxafrica.com/certificates/LJsXRr7HzZ}{\textbf{ALX SE Back-end} \hspace{2pt} \faExternalLink*} & \small 2025 \\
+      \multicolumn{2}{p{0.97\textwidth}}{\small - Advanced specialization in server-side logic, API development, and database management.}
+    \end{tabular*} \vspace{-5pt}
+
+    \item 
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \small\href{https://savanna.alxafrica.com/certificates/Cnhm8MXs72}{\textbf{ALX Freelancer Academy} \hspace{2pt} \faExternalLink*} & \small 2025 \\
+      \multicolumn{2}{p{0.97\textwidth}}{\small - Comprehensive program on building a technical freelance business and client management.}
+    \end{tabular*} \vspace{-5pt}
+  \resumeSubHeadingListEnd
 
 %-------------------------------------------
 \end{document}
+```
