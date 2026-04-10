@@ -162,7 +162,7 @@ a:not([class]):hover {
   align-items: center;
   gap: 0.45rem;
   font-family: "JetBrains Mono", monospace;
-  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
   line-height: 1;
   font-weight: 800;
   text-decoration: none;
@@ -176,6 +176,15 @@ a:not([class]):hover {
   height: 40px;
   display: block;
   flex-shrink: 0;
+  background-color: var(--text);
+  -webkit-mask-image: url("/assets/images/salim_logo_theme.svg");
+  mask-image: url("/assets/images/salim_logo_theme.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
 }
 
 .main-nav {
