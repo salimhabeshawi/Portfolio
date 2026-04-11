@@ -16,7 +16,32 @@
       {
         "month": "July",
         "achievements": [
-          "Made a SHANZ - Expenses using Python and PyQt."
+          "Made a SHANZ - Expenses using Python and PyQt"
+        ]
+      },
+      {
+        "month": "May",
+        "achievements": [
+          "Enrolled for ALX's Professional Foundations Program"
+        ]
+      },
+      {
+        "month": "Augest",
+        "achievements": [
+          "Graduated from ALX's Professional Foundations Program",
+          "Enrolled for ALX's Back-End Software Engineering Program"
+        ]
+      },
+      {
+        "month": "November",
+        "achievements": [
+          "Started maintaining a <a href=\"https://t.me/salimverse_channel\">telegram channel</a>"
+        ]
+      },
+      {
+        "month": "December",
+        "achievements": [
+          "Built the MVP for ReclaimIt"
         ]
       }
     ]
@@ -25,21 +50,28 @@
     "year": "2026",
     "months": [
       {
+        "month": "January",
+        "achievements": [
+          "Graduated from ALX's Back-End Software Engineering Program"
+        ]
+      },
+      {
         "month": "February",
         "achievements": [
-          "Launched <a href=\"https://t.me/The_Tazkiyah_bot\">The Tazkiyah Bot</a> V1."
+          "Launched <a href=\"https://t.me/The_Tazkiyah_bot\">The Tazkiyah Bot</a> V1"
         ]
       },
       {
         "month": "March",
         "achievements": [
-          "I began exploring Laravel with the intention of switching my core tech stack to it."
+          "I began exploring Laravel with the intention of switching my core tech stack to it"
         ]
       },
       {
         "month": "April",
         "achievements": [
-          "Built <a href=\"https://github.com/salimhabeshawi/katib.git\">Katib</a>."
+          "Built <a href=\"https://github.com/salimhabeshawi/katib.git\">Katib</a> using Python and PySide6",
+          "Got my first ever domain name (salimhabeshawi.tech)"
         ]
       }
     ]

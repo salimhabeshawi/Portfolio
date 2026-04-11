@@ -48,7 +48,6 @@ const formatTechnologyLabel = (technologyKey: string) =>
     <header class="site-header">
       <a class="brand" href="#home">
         <span class="brand-logo" aria-hidden="true"></span>
-        <span>Salim Ahmed</span>
       </a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#about">About</a>
@@ -149,12 +148,12 @@ const formatTechnologyLabel = (technologyKey: string) =>
                 </div>
                 {project.data.links.length > 1 ? (
                   <div class="project-actions">
-                    {project.data.links.map((link) => (
+                    {project.data.links.map((link: { url: string; label: string }) => (
                       <a class="btn btn-primary" href={link.url} target="_blank" rel="noopener">{link.label}</a>
                     ))}
                   </div>
                 ) : (
-                  project.data.links.map((link) => (
+                  project.data.links.map((link: { url: string; label: string }) => (
                     <a class="btn btn-primary" href={link.url} target="_blank" rel="noopener">{link.label}</a>
                   ))
                 )}
@@ -210,7 +209,7 @@ const formatTechnologyLabel = (technologyKey: string) =>
               <p>{post.data.excerpt}</p>
               {post.data.tags.length ? (
                 <div class="blog-tags" aria-label={`${post.data.title} tags`}>
-                  {post.data.tags.map((tag) => (
+                  {post.data.tags.map((tag: string) => (
                     <button class="skill-tag filter-tag blog-filter-tag blog-skill-tag" type="button" data-tag={tag}
                       >{tag}</button
                     >
