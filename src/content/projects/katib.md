@@ -5,8 +5,7 @@ image: /assets/images/katib.png
 imageAlt: Katib app preview
 technologies:
   - python
-  - sql
-  - docker
+  - pyside6
   - git
   - github
 links:
