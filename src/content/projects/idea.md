@@ -14,6 +14,6 @@ links:
   - label: Repository
     url: https://github.com/salimhabeshawi/idea.git
   - label: Site
-    url: https://idea-419f39c47254.herokuapp.com
+    url: https://idea-20b9cba542f2.herokuapp.com
 order: 1
 ---
