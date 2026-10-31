@@ -372,6 +372,49 @@ function initHomePage() {
     showLatestTimelineEntry();
     syncTimelineScrollbar();
   });
+
+  // ── Social link copy buttons ──────────────────────────────────────────────
+  function fallbackCopy(text) {
+    var textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.cssText = "position:fixed;left:-9999px;top:-9999px;opacity:0;";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    try { document.execCommand("copy"); } catch (_) {}
+    document.body.removeChild(textarea);
+  }
+
+  var copyButtons = Array.from(document.querySelectorAll(".social-copy-btn"));
+
+  copyButtons.forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var text = btn.dataset.copy;
+      if (!text) return;
+
+      var originalLabel = btn.getAttribute("aria-label");
+
+      function onCopied() {
+        btn.classList.add("is-copied");
+        btn.setAttribute("aria-label", "Copied!");
+        setTimeout(function () {
+          btn.classList.remove("is-copied");
+          btn.setAttribute("aria-label", originalLabel);
+        }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(onCopied).catch(function () {
+          fallbackCopy(text);
+          onCopied();
+        });
+      } else {
+        fallbackCopy(text);
+        onCopied();
+      }
+    });
+  });
 }
 
 if (document.readyState === "loading") {

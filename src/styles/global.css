@@ -148,6 +148,11 @@ a:not([class]):hover {
 }
 
 .site-header {
+  /* Sticky on all screen sizes — hides on scroll-down, reveals on scroll-up */
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  transition: top 0.3s ease;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -155,6 +160,62 @@ a:not([class]):hover {
   border: 2px solid var(--line);
   background: var(--panel);
   padding: 0.9rem 1rem;
+}
+
+.site-header.is-nav-hidden {
+  top: -10rem;
+}
+
+/* Right-side header controls (theme toggle / back link + hamburger) */
+.header-end {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Hamburger button — hidden on desktop, shown on mobile */
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 2px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+}
+
+.nav-toggle:hover {
+  background: var(--orange-soft);
+  box-shadow: -3px 3px 0 var(--hover-shadow);
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+
+/* Animate bars → X when open */
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .brand {
@@ -727,6 +788,81 @@ main {
   gap: 0.55rem;
 }
 
+.social-link-wrap {
+  position: relative;
+}
+
+.social-links .social-link-wrap a {
+  display: flex;
+  width: 100%;
+}
+
+.social-copy-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  width: 34px;
+  border: none;
+  border-left: 2px solid var(--line-soft);
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.social-link-wrap:hover .social-copy-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.social-copy-btn:hover {
+  background: var(--orange-soft);
+  color: var(--text);
+}
+
+.social-copy-btn.is-copied {
+  background: var(--orange);
+  color: #fff;
+  border-left-color: var(--orange-dark);
+}
+
+.social-copy-btn svg {
+  width: 13px;
+  height: 13px;
+  display: block;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+.social-copy-btn .icon-check {
+  display: none;
+}
+
+.social-copy-btn.is-copied .icon-copy {
+  display: none;
+}
+
+.social-copy-btn.is-copied .icon-check {
+  display: block;
+}
+
+/* On touch devices hover doesn't work — keep copy button always visible */
+@media (hover: none) {
+  .social-copy-btn {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .social-links a {
   border: 2px solid var(--line);
   color: var(--text);
@@ -823,10 +959,11 @@ main {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  /* Tablet header: brand + controls on top, nav links below */
   .site-header {
     grid-template-columns: 1fr auto;
     grid-template-areas:
-      "brand toggle"
+      "brand header-end"
       "nav nav";
     align-items: center;
     justify-items: stretch;
@@ -837,14 +974,57 @@ main {
     grid-area: brand;
   }
 
-  .theme-toggle {
-    grid-area: toggle;
+  .header-end {
+    grid-area: header-end;
     justify-self: end;
   }
 
   .main-nav {
     grid-area: nav;
     justify-content: flex-start;
+  }
+}
+
+/* ── Mobile: hamburger menu ≤ 768px ── */
+@media (max-width: 768px) {
+  /* Collapse to single row — nav becomes a dropdown */
+  .site-header {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "brand header-end";
+  }
+
+  /* Reveal the hamburger button */
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Hide nav links; make them a dropdown when .is-open */
+  .main-nav {
+    display: none;
+    position: absolute;
+    /* Sit just below the header — left/right offset cancels out the header's border */
+    top: 100%;
+    left: -2px;
+    right: -2px;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: var(--panel);
+    border: 2px solid var(--line);
+    border-top: none;
+    padding: 0.75rem;
+    z-index: 500;
+  }
+
+  .main-nav.is-open {
+    display: flex;
+  }
+
+  /* Full-width stacked links inside the dropdown */
+  .main-nav a {
+    width: 100%;
+    height: 44px;
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -862,37 +1042,8 @@ main {
     padding: 0.9rem;
   }
 
-  .site-header {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "brand toggle"
-      "nav nav";
-    align-items: center;
-    justify-items: stretch;
-  }
-
-  .brand {
-    grid-area: brand;
-  }
-
-  .theme-toggle {
-    grid-area: toggle;
-    justify-self: end;
-  }
-
-  .main-nav {
-    grid-area: nav;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .main-nav a {
-    flex: 1 1 calc(50% - 0.45rem);
-    text-align: center;
-  }
-
   .social-links {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .timeline-list > li {

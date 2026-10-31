@@ -23,14 +23,28 @@ const { Content } = await post.render();
   <div class="page-shell page-shell-post">
     <header class="site-header">
       <a class="brand" href="/">Salim Ahmed</a>
-      <nav class="main-nav" aria-label="Post navigation">
+      <nav id="mainNav" class="main-nav" aria-label="Post navigation">
         <a href="/#about">About</a>
         <a href="/#projects">Projects</a>
         <a href="/blog">Blog</a>
         <a href="/#timeline">Timeline</a>
         <a href="/#connect">Connect</a>
       </nav>
-      <a class="btn btn-outline" href="/blog">All Posts</a>
+      <div class="header-end">
+        <a class="btn btn-outline" href="/blog">All Posts</a>
+        <button
+          id="navToggle"
+          class="nav-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mainNav"
+        >
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
     </header>
 
     <main>

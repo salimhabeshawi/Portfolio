@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import siteScrollbarScriptUrl from "../scripts/site-scrollbar.js?url";
 import themeScriptUrl from "../scripts/theme.js?url";
+import navScrollScriptUrl from "../scripts/nav-scroll.js?url";
+import navMenuScriptUrl from "../scripts/nav-menu.js?url";
 
 interface Props {
   title: string;
@@ -66,5 +68,7 @@ const ogImage = `${siteUrl}assets/images/og-preview.png`;
 
     <script type="module" src={themeScriptUrl}></script>
     <script type="module" src={siteScrollbarScriptUrl}></script>
+    <script type="module" src={navScrollScriptUrl}></script>
+    <script type="module" src={navMenuScriptUrl}></script>
   </body>
 </html>
