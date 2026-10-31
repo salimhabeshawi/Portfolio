@@ -1,9 +1,20 @@
 function initHomePage() {
   const scrollTopAid = document.getElementById("scrollTopAid");
   const scrollBottomAid = document.getElementById("scrollBottomAid");
+  const siteHeader = document.querySelector(".site-header");
   const scrollAidIdleMs = 1200;
   let hideScrollAidsTimeout;
   let lastScrollY = window.scrollY;
+
+  // Keep scroll-top-aid below the sticky header at all screen sizes
+  function syncScrollTopAidPosition() {
+    if (!scrollTopAid || !siteHeader) return;
+    var gap = 12;
+    scrollTopAid.style.top = (siteHeader.offsetHeight + gap) + "px";
+  }
+
+  syncScrollTopAidPosition();
+  window.addEventListener("resize", syncScrollTopAidPosition, { passive: true });
   const projectFilterTagButtons = Array.from(
     document.querySelectorAll(".project-filter-tag"),
   );
@@ -372,6 +383,36 @@ function initHomePage() {
     showLatestTimelineEntry();
     syncTimelineScrollbar();
   });
+
+  // ── Hero photo spotlight (desktop only) ───────────────────────────────────
+  (function () {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    var wrap = document.querySelector(".hero-photo-wrap");
+    var reveal = document.querySelector(".hero-photo-reveal");
+    if (!wrap || !reveal) return;
+
+    var RADIUS = 65; // spotlight radius in px
+
+    function paintMask(x, y) {
+      var m = "radial-gradient(circle " + RADIUS + "px at " + x + "px " + y + "px, black 25%, transparent 75%)";
+      reveal.style.maskImage = m;
+      reveal.style.webkitMaskImage = m;
+    }
+
+    function clearMask() {
+      var m = "radial-gradient(circle 0px at 50% 50%, transparent 0%, transparent 0%)";
+      reveal.style.maskImage = m;
+      reveal.style.webkitMaskImage = m;
+    }
+
+    wrap.addEventListener("mousemove", function (e) {
+      var r = wrap.getBoundingClientRect();
+      paintMask(e.clientX - r.left, e.clientY - r.top);
+    });
+
+    wrap.addEventListener("mouseleave", clearMask);
+  })();
 
   // ── Social link copy buttons ──────────────────────────────────────────────
   function fallbackCopy(text) {

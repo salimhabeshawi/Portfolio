@@ -32,6 +32,11 @@
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -275,6 +280,7 @@ a:not([class]):hover {
 .main-nav a:hover {
   background: var(--orange-soft);
   box-shadow: -3px 3px 0 var(--hover-shadow);
+  color: var(--text);
 }
 
 .theme-toggle {
@@ -315,6 +321,68 @@ main {
 .hero {
   display: grid;
   gap: 0.65rem;
+}
+
+/* h1 + photo side by side at every screen size */
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-title-row h1 {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Wrapper carries the sizing, border, shadow, and overflow clip */
+.hero-photo-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 160px;
+  height: 160px;
+  border: 2px solid var(--line);
+  box-shadow: -4px 4px 0 var(--hover-shadow);
+  overflow: hidden;
+}
+
+/* Both layers fill the wrapper */
+.hero-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Top layer: the clear photo, revealed through the spotlight mask */
+.hero-photo-reveal {
+  position: absolute;
+  inset: 0;
+  /* Fully hidden until JS paints the spotlight */
+  mask-image: radial-gradient(circle 0px at 50% 50%, transparent 0%, transparent 0%);
+  -webkit-mask-image: radial-gradient(circle 0px at 50% 50%, transparent 0%, transparent 0%);
+}
+
+/* Spotlight effect — desktop with a real pointer only */
+@media (hover: hover) and (pointer: fine) {
+  .hero-photo-bg {
+    /* Blur + darken the base so the revealed area pops */
+    filter: blur(6px) brightness(0.35);
+    /* Scale up slightly to prevent blurred-edge halos */
+    transform: scale(1.08);
+  }
+
+  .hero-photo-wrap {
+    cursor: crosshair;
+  }
+}
+
+/* On touch / mobile: show only the clear photo, hide the reveal overlay */
+@media (max-width: 768px), (hover: none) {
+  .hero-photo-reveal {
+    display: none;
+  }
 }
 
 .eyebrow {
@@ -509,6 +577,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.8rem;
   margin-bottom: 0.8rem;
 }
@@ -672,6 +741,26 @@ main {
 
 .blog-content code {
   font-family: "JetBrains Mono", monospace;
+}
+
+.blog-content pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.blog-content pre code {
+  white-space: pre;
+}
+
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border: 2px solid var(--line-soft);
+}
+
+.blog-content {
+  overflow-wrap: break-word;
 }
 
 .timeline-scroll-shell {
@@ -921,7 +1010,8 @@ main {
 }
 
 .scroll-top-aid {
-  top: 1.2rem;
+  /* JS sets this dynamically to clear the sticky header; 5.5rem is the CSS fallback */
+  top: 5.5rem;
 }
 
 .scroll-aid:hover {
@@ -942,7 +1032,37 @@ main {
   pointer-events: auto;
 }
 
+/* Desktop: wrapper floats right of all hero text, out of normal flow */
+@media (min-width: 981px) {
+  .hero {
+    position: relative;
+    padding-right: calc(160px + 2.5rem);
+  }
+
+  .hero-photo-wrap {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
 @media (max-width: 980px) {
+  /* Tablet: same absolute trick, but smaller wrapper */
+  .hero {
+    position: relative;
+    padding-right: calc(110px + 2.5rem);
+  }
+
+  .hero-photo-wrap {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 110px;
+    height: 110px;
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
   }
@@ -987,6 +1107,22 @@ main {
 
 /* ── Mobile: hamburger menu ≤ 768px ── */
 @media (max-width: 768px) {
+  /* Reset wrapper back into normal flex flow (next to h1) */
+  .hero {
+    position: static;
+    padding-right: 0;
+  }
+
+  .hero-photo-wrap {
+    position: static;
+    transform: none;
+    width: 80px;
+    height: 80px;
+  }
+
+  .hero-title-row {
+    gap: 0.75rem;
+  }
   /* Collapse to single row — nav becomes a dropdown */
   .site-header {
     grid-template-columns: 1fr auto;
@@ -1042,6 +1178,15 @@ main {
     padding: 0.9rem;
   }
 
+  .hero-title-row {
+    gap: 0.5rem;
+  }
+
+  .hero-photo-wrap {
+    width: 64px;
+    height: 64px;
+  }
+
   .social-links {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1064,7 +1209,8 @@ main {
   }
 
   .scroll-top-aid {
-    top: 0.9rem;
+    /* JS will override this; keeps it below the 1-row mobile header */
+    top: 5rem;
   }
 
   .site-scrollbar {
